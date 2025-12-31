@@ -1,0 +1,7 @@
+{
+  "name": "Kodiero Investments - Business Center",
+  "description": "Modern, fast, and scalable web portal for Kodiero Business Center in Kondele, Kisumu, showcasing prime commercial spaces and office amenities.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
