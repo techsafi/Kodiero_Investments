@@ -1,6 +1,5 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { GoogleGenAI } from '@google/genai';
 import { MessageSquare, X, Send, Bot, Sparkles, Power } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CONTACT_INFO } from '../constants';
@@ -49,13 +48,19 @@ const GeminiAssistant: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    // Use the defined environment variable directly
-    const apiKey = (process.env.GEMINI_API_KEY || process.env.API_KEY || (window as any)._GEMINI_API_KEY) as string;
+    // Retrieve API key from various possible locations (Vite-specific and fallback)
+    const apiKey = (
+      (import.meta as any).env?.GEMINI_API_KEY ||
+      (import.meta as any).env?.VITE_GEMINI_API_KEY ||
+      (process as any).env?.GEMINI_API_KEY ||
+      (process as any).env?.API_KEY ||
+      (window as any)._GEMINI_API_KEY
+    ) as string;
 
     console.log('Chatbot attempting send. API Key present:', !!apiKey);
 
     if (!apiKey || apiKey === 'your_gemini_api_key_here') {
-      setMessages(prev => [...prev, { role: 'bot', text: "Service temporarily unavailable. Please call us at " + CONTACT_INFO.phone }]);
+      setMessages(prev => [...prev, { role: 'bot', text: "Configuration error. Please call us at " + CONTACT_INFO.phone }]);
       return;
     }
 
@@ -65,41 +70,57 @@ const GeminiAssistant: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // Use v1beta for latest models like gemini-2.0-flash
-      const ai = new GoogleGenAI({
-        apiKey,
-        apiVersion: 'v1beta'
+      const knowledgeBase = `You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu. 
+      Context: Location is Kondele, along Kibos Road. Managed by Kodiero Investments.
+      Amenities: CCTV, 24/7 Security, Backup Generator, Water Reserves, Fire Alarms, Ample Parking.
+      Strategic Advantages: High foot traffic, transport connection point.
+      Space Types: Offices (Corporate, NGOs), Retail (Clinics, Salons, Fashion outlets).
+      Contact: Phone: ${CONTACT_INFO.phone}, Email: ${CONTACT_INFO.email}, WhatsApp: ${CONTACT_INFO.whatsapp}.`;
+
+      const prompt = `${knowledgeBase}\n\nUser Question: ${userMsg}\n\nAssistant Response (Professional, concise, plain text, no Markdown):`;
+
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{
+              text: prompt
+            }]
+          }],
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 800,
+          }
+        })
       });
 
-      const response = await ai.models.generateContent({
-        model: 'gemini-1.5-flash',
-        contents: userMsg, // Simple string input
-        config: {
-          systemInstruction: `You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu. 
-          Context: Location is Kondele, along Kibos Road. Amenities include CCTV, 24/7 Security, Backup Generator, Water Reserves.
-          Contact: Phone: ${CONTACT_INFO.phone}, Email: ${CONTACT_INFO.email}, WhatsApp: ${CONTACT_INFO.whatsapp}.
-          Provide short, professional, plain-text answers. Encourage site visits.`
-        }
-      });
-
-      const rawText = response.text;
-
-      if (!rawText) {
-        throw new Error('No text returned from Gemini API');
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Gemini API error details:', errorData);
+        throw new Error(errorData.error?.message || `API error: ${response.statusText}`);
       }
 
-      const cleanText = rawText.replace(/\*/g, '').trim();
-      setMessages(prev => [...prev, { role: 'bot', text: cleanText }]);
+      const data = await response.json();
+
+      if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+        const rawText = data.candidates[0].content.parts[0].text;
+        const cleanText = rawText.replace(/\*/g, '').trim();
+        setMessages(prev => [...prev, { role: 'bot', text: cleanText }]);
+      } else {
+        throw new Error("Unexpected response structure from Gemini");
+      }
     } catch (error: any) {
       console.error('Chatbot Error Details:', error);
 
       let errorMsg = "Technical difficulties. Please call us at " + CONTACT_INFO.phone;
 
-      // Provide more helpful error if possible
-      if (error?.status === 403 || error?.message?.includes('API_KEY_INVALID')) {
+      if (error?.message?.includes('API_KEY_INVALID') || error?.message?.includes('403')) {
         errorMsg = "Configuration error (API Key). Please contact management.";
-      } else if (error?.status === 429) {
-        errorMsg = "Chat is currently busy. Please try again in a moment or call " + CONTACT_INFO.phone;
+      } else if (error?.message?.includes('429')) {
+        errorMsg = "Chat application is receiving high traffic. Please try again or call " + CONTACT_INFO.phone;
       }
 
       setMessages(prev => [...prev, { role: 'bot', text: errorMsg }]);
