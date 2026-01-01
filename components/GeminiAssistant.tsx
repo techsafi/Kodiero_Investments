@@ -22,14 +22,21 @@ const GeminiAssistant: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
+    // Check for process globally to avoid ReferenceError in strict ESM environments
+    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+
+    if (!apiKey) {
+      setMessages(prev => [...prev, { role: 'bot', text: "Service temporarily unavailable. Please call us at " + CONTACT_INFO.phone }]);
+      return;
+    }
+
     const userMsg = input.trim();
     setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
     setInput('');
     setIsLoading(true);
 
     try {
-      // Use process.env.API_KEY directly as per GenAI guidelines
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+      const ai = new GoogleGenAI({ apiKey: apiKey as string });
       const prompt = `
         You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu.
         Context:
@@ -41,7 +48,7 @@ const GeminiAssistant: React.FC = () => {
         
         Rules:
         - Be professional, welcoming, and concise.
-        - Use the new phone number ${CONTACT_INFO.phone} for all inquiries.
+        - Use the phone number ${CONTACT_INFO.phone} for all inquiries.
         - Encourage visitors to book a site visit.
         - IMPORTANT: Do not use Markdown formatting. Do NOT use asterisks (*) for bolding or lists. 
         - Use plain text and double line breaks between paragraphs or points for clarity.
@@ -53,7 +60,6 @@ const GeminiAssistant: React.FC = () => {
         contents: prompt
       });
 
-      // Directly access .text property as it is a getter, not a method
       let rawText = response.text || "I'm sorry, I couldn't process that. Please contact our office directly at " + CONTACT_INFO.phone;
       const cleanText = rawText.replace(/\*/g, '').trim();
 

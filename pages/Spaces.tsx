@@ -2,106 +2,98 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle2, Building2, Store, Users, MapPin } from 'lucide-react';
-import { SPACES, CONTACT_INFO, getIcon } from '../constants';
+import { SPACES, CONTACT_INFO } from '../constants';
 
 const Spaces: React.FC = () => {
   return (
-    <div className="pt-20 md:pt-24 min-h-screen">
-      <div className="bg-slate-900 py-16 md:py-24 text-white">
+    <div className="pt-20 min-h-screen bg-[#FDFCF0]">
+      <div className="bg-slate-900 py-10 md:py-24 text-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-3xl md:text-7xl font-bold mb-6 font-serif">Available Spaces</h1>
-          <p className="text-sm md:text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-            Kodiero Business Center offers flexible commercial spaces suitable for different business needs—from consulting firms to high-traffic retail outlets.
+          <h1 className="text-2xl md:text-7xl font-bold mb-3 font-serif">Spaces</h1>
+          <p className="text-[11px] md:text-xl text-gray-400 max-w-xl mx-auto font-light leading-relaxed">
+            Flexible commercial spaces suitable for retail, consultancy, and corporate needs.
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 md:py-24">
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16">
-          {/* Detailed Categories */}
-          <div className="space-y-12">
-            <div className="bg-white p-8 md:p-12 rounded-[3rem] border border-gray-100 shadow-xl">
-              <div className="bg-amber-100 w-16 h-16 rounded-2xl flex items-center justify-center text-amber-600 mb-8">
-                <Building2 size={32} />
+      <div className="max-w-7xl mx-auto px-4 py-8 md:py-24">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-16">
+          <div className="space-y-6">
+            {/* Office Section */}
+            <div className="bg-white p-6 md:p-12 rounded-[2rem] border border-gray-100 shadow-sm">
+              <div className="bg-amber-100 w-12 h-12 rounded-xl flex items-center justify-center text-amber-600 mb-6">
+                <Building2 size={24} />
               </div>
-              <h2 className="text-3xl font-bold mb-6 font-serif">Office Spaces</h2>
-              <div className="mb-8">
-                <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px] mb-4">Ideal For:</p>
-                <div className="grid grid-cols-2 gap-4">
-                  {['Corporate Offices', 'Consultancies', 'NGOs & Institutions', 'Law & IT Firms', 'Training Centers', 'SMEs'].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-gray-700 font-medium">
-                      <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" /> {item}
+              <h2 className="text-xl font-bold mb-4 font-serif">Office Suites</h2>
+              
+              <div className="mb-6">
+                <p className="text-gray-400 font-bold uppercase tracking-widest text-[8px] mb-3">Ideal For:</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {['NGOs', 'Law Firms', 'IT Firms', 'Consultants'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-[10px] text-gray-700 font-medium">
+                      <div className="w-1 h-1 bg-amber-500 rounded-full" /> {item}
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="space-y-4">
-                <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px]">Key Benefits:</p>
-                <div className="space-y-2">
-                  <div className="flex gap-3 text-gray-600 text-sm"><CheckCircle2 size={16} className="text-emerald-500 shrink-0"/> Well-lit rooms with professional layouts</div>
-                  <div className="flex gap-3 text-gray-600 text-sm"><CheckCircle2 size={16} className="text-emerald-500 shrink-0"/> Quiet, focus-oriented working environment</div>
-                  <div className="flex gap-3 text-gray-600 text-sm"><CheckCircle2 size={16} className="text-emerald-500 shrink-0"/> Easy access for clients and staff</div>
-                </div>
+              
+              <div className="space-y-2">
+                <div className="flex gap-2 text-gray-500 text-[10px]"><CheckCircle2 size={12} className="text-emerald-500 shrink-0"/> Well-lit professional rooms</div>
+                <div className="flex gap-2 text-gray-500 text-[10px]"><CheckCircle2 size={12} className="text-emerald-500 shrink-0"/> Quiet working environment</div>
               </div>
             </div>
 
-            <div className="bg-slate-900 p-8 md:p-12 rounded-[3rem] text-white shadow-xl">
-              <div className="bg-white/10 w-16 h-16 rounded-2xl flex items-center justify-center text-amber-500 mb-8">
-                <Store size={32} />
+            {/* Retail Section */}
+            <div className="bg-slate-900 p-6 md:p-12 rounded-[2rem] text-white">
+              <div className="bg-white/10 w-12 h-12 rounded-xl flex items-center justify-center text-amber-500 mb-6">
+                <Store size={24} />
               </div>
-              <h2 className="text-3xl font-bold mb-6 font-serif">Retail & Shop Spaces</h2>
-              <div className="mb-8">
-                <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px] mb-4">Ideal For:</p>
-                <div className="grid grid-cols-2 gap-4">
-                  {['Retail Shops', 'Service Outlets', 'Clinics & Salons', 'Fashion & Beauty', 'Electronics', 'Showrooms'].map((item, i) => (
-                    <div key={i} className="flex items-center gap-2 text-sm text-gray-300 font-medium">
-                      <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" /> {item}
+              <h2 className="text-xl font-bold mb-4 font-serif">Retail Spaces</h2>
+              
+              <div className="mb-6">
+                <p className="text-gray-400 font-bold uppercase tracking-widest text-[8px] mb-3">Ideal For:</p>
+                <div className="grid grid-cols-2 gap-2">
+                  {['Clinics', 'Salons', 'Electronics', 'Fashion'].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 text-[10px] text-gray-300 font-medium">
+                      <div className="w-1 h-1 bg-amber-500 rounded-full" /> {item}
                     </div>
                   ))}
                 </div>
               </div>
-              <div className="space-y-4">
-                <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px]">Key Benefits:</p>
-                <div className="space-y-2">
-                  <div className="flex gap-3 text-gray-300 text-sm"><CheckCircle2 size={16} className="text-amber-500 shrink-0"/> High visibility for walk-in customer traffic</div>
-                  <div className="flex gap-3 text-gray-300 text-sm"><CheckCircle2 size={16} className="text-amber-500 shrink-0"/> Strategic frontage for brand signage</div>
-                  <div className="flex gap-3 text-gray-300 text-sm"><CheckCircle2 size={16} className="text-amber-500 shrink-0"/> Located along the high-traffic Kibos Road</div>
-                </div>
+              
+              <div className="space-y-2">
+                <div className="flex gap-2 text-gray-300 text-[10px]"><CheckCircle2 size={12} className="text-amber-500 shrink-0"/> High visibility walk-in traffic</div>
+                <div className="flex gap-2 text-gray-300 text-[10px]"><CheckCircle2 size={12} className="text-amber-500 shrink-0"/> Kibos Road frontage</div>
               </div>
             </div>
           </div>
 
-          {/* Quick Contact & Info */}
-          <div className="space-y-8">
-             <div className="bg-white p-8 rounded-[3rem] border border-gray-100 shadow-sm sticky top-28">
-               <h3 className="text-2xl font-bold mb-6 font-serif">Make Kodiero Your Address</h3>
-               <p className="text-gray-500 text-sm mb-8 leading-relaxed">
-                 Operating from Kodiero Business Center places your business in a strategic, high-potential location with strong long-term growth prospects.
-               </p>
-               <div className="space-y-4 mb-8">
-                 <div className="flex items-center gap-4">
-                   <div className="bg-slate-50 p-3 rounded-xl"><MapPin className="text-amber-600" size={20}/></div>
-                   <div>
-                     <p className="text-[10px] font-bold text-gray-400 uppercase">Location</p>
-                     <p className="text-sm font-bold">Kondele, Kibos Road Corridor</p>
-                   </div>
-                 </div>
-                 <div className="flex items-center gap-4">
-                   <div className="bg-slate-50 p-3 rounded-xl"><Users className="text-amber-600" size={20}/></div>
-                   <div>
-                     <p className="text-[10px] font-bold text-gray-400 uppercase">Tenant Focus</p>
-                     <p className="text-sm font-bold">Responsive Management</p>
-                   </div>
+          {/* Inquiry Box */}
+          <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm self-start md:sticky md:top-28">
+            <h3 className="text-lg font-bold mb-4 font-serif">Make Kodiero Your Address</h3>
+            <div className="space-y-4 mb-6">
+               <div className="flex items-center gap-3">
+                 <div className="bg-slate-50 p-2 rounded-lg"><MapPin className="text-amber-600" size={16}/></div>
+                 <div>
+                   <p className="text-[8px] font-bold text-gray-400 uppercase">Location</p>
+                   <p className="text-[11px] font-bold text-slate-800">Kondele, Kibos Road</p>
                  </div>
                </div>
-               <a 
-                href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Inquiring about space availability`}
-                target="_blank"
-                className="block w-full text-center bg-amber-500 text-white py-4 rounded-2xl font-bold text-lg hover:bg-amber-600 transition-all shadow-lg"
-               >
-                 Inquire About Pricing
-               </a>
-             </div>
+               <div className="flex items-center gap-3">
+                 <div className="bg-slate-50 p-2 rounded-lg"><Users className="text-amber-600" size={16}/></div>
+                 <div>
+                   <p className="text-[8px] font-bold text-gray-400 uppercase">Tenant Support</p>
+                   <p className="text-[11px] font-bold text-slate-800">Responsive Management</p>
+                 </div>
+               </div>
+            </div>
+            <a 
+              href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Inquiring about space`}
+              target="_blank"
+              className="block w-full text-center bg-amber-500 text-white py-3 rounded-xl font-bold text-xs shadow-lg"
+            >
+              Inquire Pricing
+            </a>
           </div>
         </div>
       </div>
