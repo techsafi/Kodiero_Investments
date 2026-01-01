@@ -50,7 +50,9 @@ const GeminiAssistant: React.FC = () => {
     if (!input.trim() || isLoading) return;
 
     // Use the defined environment variable directly
-    const apiKey = (process.env.GEMINI_API_KEY || process.env.API_KEY) as string;
+    const apiKey = (process.env.GEMINI_API_KEY || process.env.API_KEY || (window as any)._GEMINI_API_KEY) as string;
+
+    console.log('Chatbot attempting send. API Key present:', !!apiKey);
 
     if (!apiKey || apiKey === 'your_gemini_api_key_here') {
       setMessages(prev => [...prev, { role: 'bot', text: "Service temporarily unavailable. Please call us at " + CONTACT_INFO.phone }]);
@@ -63,37 +65,43 @@ const GeminiAssistant: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey });
-      const prompt = `
-        You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu.
-        Context:
-        - Location: Kondele along Kibos Road, Kisumu, Kenya.
-        - Amenities: CCTV, 24/7 Security, Backup Generator, Underground Water Reserves, Fire Alarms, Ample Parking.
-        - Strategic Advantages: High foot traffic, easy signage placement, transport connection point.
-        - Space Types: Offices (Corporate, Consultancies, NGOs), Retail (Clinics, Salons, Fashion outlets).
-        - Contact: Phone: ${CONTACT_INFO.phone}, Email: ${CONTACT_INFO.email}, WhatsApp: ${CONTACT_INFO.whatsapp}.
-        
-        Rules:
-        - Be professional, welcoming, and concise.
-        - Use the phone number ${CONTACT_INFO.phone} for all inquiries.
-        - Encourage visitors to book a site visit.
-        - Do NOT use Markdown formatting (no asterisks).
-        - Use plain text and double line breaks.
-        - User Query: ${userMsg}
-      `;
+      // Use v1beta for latest models like gemini-2.0-flash
+      const ai = new GoogleGenAI({
+        apiKey,
+        apiVersion: 'v1beta'
+      });
 
       const response = await ai.models.generateContent({
         model: 'gemini-2.0-flash',
-        contents: prompt
+        contents: [userMsg], // Use array of strings for content
+        config: {
+          systemInstruction: `You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu. 
+          Contact: Phone: ${CONTACT_INFO.phone}, Email: ${CONTACT_INFO.email}, WhatsApp: ${CONTACT_INFO.whatsapp}.
+          Provide short, professional, plain-text answers. Encourage site visits.`
+        }
       });
 
-      let rawText = response.text || "I'm sorry, I couldn't process that. Please contact our office directly at " + CONTACT_INFO.phone;
-      const cleanText = rawText.replace(/\*/g, '').trim();
+      const rawText = response.text;
 
+      if (!rawText) {
+        throw new Error('No text returned from Gemini API');
+      }
+
+      const cleanText = rawText.replace(/\*/g, '').trim();
       setMessages(prev => [...prev, { role: 'bot', text: cleanText }]);
-    } catch (error) {
-      console.error(error);
-      setMessages(prev => [...prev, { role: 'bot', text: "Technical difficulties. Please call us at " + CONTACT_INFO.phone }]);
+    } catch (error: any) {
+      console.error('Chatbot Error Details:', error);
+
+      let errorMsg = "Technical difficulties. Please call us at " + CONTACT_INFO.phone;
+
+      // Provide more helpful error if possible
+      if (error?.status === 403 || error?.message?.includes('API_KEY_INVALID')) {
+        errorMsg = "Configuration error (API Key). Please contact management.";
+      } else if (error?.status === 429) {
+        errorMsg = "Chat is currently busy. Please try again in a moment or call " + CONTACT_INFO.phone;
+      }
+
+      setMessages(prev => [...prev, { role: 'bot', text: errorMsg }]);
     } finally {
       setIsLoading(false);
     }
