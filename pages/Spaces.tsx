@@ -1,13 +1,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  Building2, 
-  Store, 
-  Users, 
-  MapPin, 
-  ArrowRight, 
+import {
+  CheckCircle2,
+  Building2,
+  Store,
+  Users,
+  MapPin,
+  ArrowRight,
   PlayCircle,
   ShieldCheck,
   Zap,
@@ -45,7 +45,7 @@ const Spaces: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 py-16 md:py-24">
         <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
           <div className="lg:col-span-2 space-y-16">
-            
+
             {/* Office Suites Section */}
             <section id="office-suites" className="scroll-mt-32">
               <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -58,24 +58,24 @@ const Spaces: React.FC = () => {
                   <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                     Our office suites are designed for focused work and professional engagement, providing a polished impression for your clients and a productive environment for your team.
                   </p>
-                  
-                  <div className="grid sm:grid-cols-2 gap-8 pt-4">
+
+                  <div className="grid grid-cols-2 gap-4 md:gap-8 pt-4">
                     <div>
-                      <h4 className="font-bold text-slate-800 text-xs uppercase tracking-widest mb-4">Ideal For:</h4>
+                      <h4 className="font-bold text-slate-800 text-[9px] md:text-sm uppercase tracking-widest mb-4">Ideal For:</h4>
                       <ul className="space-y-2">
-                        {['NGOs and non-profits', 'Law firms & legal consultancies', 'IT companies & tech startups', 'Professional consultants'].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                            <div className="w-1.5 h-1.5 bg-amber-500 rounded-full shrink-0" /> {item}
+                        {['NGOs & Non-profits', 'Law Firms', 'IT Startups', 'Consultants'].map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-[9px] md:text-sm text-gray-500 font-medium leading-tight">
+                            <div className="w-1 md:w-1.5 h-1 md:h-1.5 bg-amber-500 rounded-full shrink-0" /> {item}
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-800 text-xs uppercase tracking-widest mb-4">Suite Features:</h4>
+                      <h4 className="font-bold text-slate-800 text-[9px] md:text-sm uppercase tracking-widest mb-4">Suite Features:</h4>
                       <ul className="space-y-2">
-                        {['Well-lit rooms for focused work', 'Quiet, private environments', 'Flexible layouts for team sizes', 'Reliable industrial-grade utilities'].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                            <CheckCircle2 size={14} className="text-emerald-500 shrink-0" /> {item}
+                        {['Well-lit for Focus', 'Quiet & Private', 'Flexible Layouts', 'Industrial Power'].map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-[9px] md:text-sm text-gray-500 font-medium leading-tight">
+                            <CheckCircle2 size={10} className="text-emerald-500 shrink-0 md:w-3.5 md:h-3.5" /> {item}
                           </li>
                         ))}
                       </ul>
@@ -106,8 +106,8 @@ const Spaces: React.FC = () => {
                 <h3 className="text-2xl font-bold font-serif text-slate-900 mt-2">Take an Interior Tour</h3>
               </div>
               <div className="aspect-video bg-slate-900 rounded-[2.5rem] overflow-hidden shadow-2xl relative group border-4 border-white">
-                <video 
-                  controls 
+                <video
+                  controls
                   poster="/images/interior1.jpg"
                   className="w-full h-full object-cover"
                 >
@@ -131,24 +131,24 @@ const Spaces: React.FC = () => {
                   <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                     Perfectly situated for maximum exposure, our retail units capture high footfall from the Kibos Road corridor, providing a vibrant commercial hub for service providers.
                   </p>
-                  
-                  <div className="grid sm:grid-cols-2 gap-8 pt-4">
+
+                  <div className="grid grid-cols-2 gap-4 md:gap-8 pt-4">
                     <div>
-                      <h4 className="font-bold text-slate-800 text-xs uppercase tracking-widest mb-4">Perfect For:</h4>
+                      <h4 className="font-bold text-slate-800 text-[9px] md:text-sm uppercase tracking-widest mb-4">Perfect For:</h4>
                       <ul className="space-y-2">
-                        {['Clinics and wellness services', 'Beauty salons and spas', 'Electronics & Mobile hubs', 'Fashion boutiques'].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                            <div className="w-1.5 h-1.5 bg-amber-500 rounded-full shrink-0" /> {item}
+                        {['Clinics & Wellness', 'Salons & Spas', 'Electronics Hubs', 'Fashion Stores'].map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-[9px] md:text-sm text-gray-500 font-medium leading-tight">
+                            <div className="w-1 md:w-1.5 h-1 md:h-1.5 bg-amber-500 rounded-full shrink-0" /> {item}
                           </li>
                         ))}
                       </ul>
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-800 text-xs uppercase tracking-widest mb-4">Retail Features:</h4>
+                      <h4 className="font-bold text-slate-800 text-[9px] md:text-sm uppercase tracking-widest mb-4">Retail Features:</h4>
                       <ul className="space-y-2">
-                        {['Maximum frontage visibility', 'High walk-in traffic potential', 'Signage-ready layouts', 'Safe and polished premises'].map((item, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-gray-500 font-medium">
-                            <CheckCircle2 size={14} className="text-emerald-500 shrink-0" /> {item}
+                        {['Max Visibility', 'High Walk-in', 'Signage-Ready', 'Safe Premises'].map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-[9px] md:text-sm text-gray-500 font-medium leading-tight">
+                            <CheckCircle2 size={10} className="text-emerald-500 shrink-0 md:w-3.5 md:h-3.5" /> {item}
                           </li>
                         ))}
                       </ul>
@@ -182,7 +182,7 @@ const Spaces: React.FC = () => {
                 <p className="text-xs text-gray-500 leading-relaxed mb-6">
                   Kodiero Business Center is more than a space — it’s a credible, professional business address in one of Kisumu’s fastest-growing commercial districts.
                 </p>
-                
+
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
                     <div className="bg-white p-2 rounded-xl text-amber-600 shadow-sm">
@@ -193,7 +193,7 @@ const Spaces: React.FC = () => {
                       <p className="text-sm font-bold text-slate-800">Kondele, Kibos Road</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl">
                     <div className="bg-white p-2 rounded-xl text-amber-600 shadow-sm">
                       <ShieldCheck size={20} />
@@ -205,7 +205,7 @@ const Spaces: React.FC = () => {
                   </div>
                 </div>
 
-                <a 
+                <a
                   href={`https://wa.me/${CONTACT_INFO.whatsapp}?text=Inquiring about available space`}
                   target="_blank"
                   className="block w-full text-center bg-amber-500 text-white py-4 rounded-2xl font-bold text-sm shadow-lg hover:bg-amber-600 transition-colors"
@@ -221,26 +221,26 @@ const Spaces: React.FC = () => {
                 <p className="text-xs text-gray-400 leading-relaxed mb-6">
                   We handle the infrastructure, you focus on growth.
                 </p>
-                <div className="space-y-4">
-                  <div className="flex gap-3">
+                <div className="grid grid-cols-2 md:grid-cols-1 gap-4">
+                  <div className="flex flex-col md:flex-row gap-2 md:gap-3">
                     <Users size={16} className="text-amber-500 shrink-0" />
                     <div>
-                      <p className="text-xs font-bold mb-0.5">Responsive Management</p>
-                      <p className="text-[10px] text-gray-500">On-site support for tenant needs.</p>
+                      <p className="text-[10px] md:text-xs font-bold mb-0.5">Responsive Management</p>
+                      <p className="text-[9px] md:text-[10px] text-gray-500 leading-tight">On-site support for tenant needs.</p>
                     </div>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-2 md:gap-3">
                     <Zap size={16} className="text-amber-500 shrink-0" />
                     <div>
-                      <p className="text-xs font-bold mb-0.5">Reliable Utilities</p>
-                      <p className="text-[10px] text-gray-500">Zero-downtime backup systems.</p>
+                      <p className="text-[10px] md:text-xs font-bold mb-0.5">Reliable Utilities</p>
+                      <p className="text-[9px] md:text-[10px] text-gray-500 leading-tight">Zero-downtime backup systems.</p>
                     </div>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col md:flex-row gap-2 md:gap-3 col-span-2 md:col-span-1 border-t border-white/5 pt-4 md:border-none md:pt-0">
                     <ShieldCheck size={16} className="text-amber-500 shrink-0" />
                     <div>
-                      <p className="text-xs font-bold mb-0.5">Secure Environment</p>
-                      <p className="text-[10px] text-gray-500">24-hour guarded surveillance.</p>
+                      <p className="text-[10px] md:text-xs font-bold mb-0.5">Secure Environment</p>
+                      <p className="text-[9px] md:text-[10px] text-gray-500 leading-tight">24-hour guarded surveillance.</p>
                     </div>
                   </div>
                 </div>
