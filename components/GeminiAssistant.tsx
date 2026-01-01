@@ -28,7 +28,8 @@ const GeminiAssistant: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      // Use process.env.API_KEY directly as per GenAI guidelines
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
       const prompt = `
         You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu.
         Context:
@@ -52,6 +53,7 @@ const GeminiAssistant: React.FC = () => {
         contents: prompt
       });
 
+      // Directly access .text property as it is a getter, not a method
       let rawText = response.text || "I'm sorry, I couldn't process that. Please contact our office directly at " + CONTACT_INFO.phone;
       const cleanText = rawText.replace(/\*/g, '').trim();
 
@@ -81,7 +83,7 @@ const GeminiAssistant: React.FC = () => {
           </div>
 
           <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50">
-            {messages.map((m, i) => (i > -1 &&
+            {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-[85%] p-3.5 rounded-2xl text-[12px] sm:text-[13px] shadow-sm leading-relaxed ${
                   m.role === 'user' 
