@@ -171,7 +171,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Management & Support */}
-            <div className="space-y-6">
+            <div className="space-y-6 col-span-2 md:col-span-1">
               <div className="flex items-center gap-3">
                 <div className="bg-amber-500 p-2 rounded-lg text-white"><Users size={18} /></div>
                 <h3 className="text-xl font-bold font-serif text-slate-900">Management & Support</h3>
