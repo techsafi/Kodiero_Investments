@@ -72,10 +72,11 @@ const GeminiAssistant: React.FC = () => {
       });
 
       const response = await ai.models.generateContent({
-        model: 'gemini-2.0-flash',
-        contents: [userMsg], // Use array of strings for content
+        model: 'gemini-1.5-flash',
+        contents: userMsg, // Simple string input
         config: {
           systemInstruction: `You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu. 
+          Context: Location is Kondele, along Kibos Road. Amenities include CCTV, 24/7 Security, Backup Generator, Water Reserves.
           Contact: Phone: ${CONTACT_INFO.phone}, Email: ${CONTACT_INFO.email}, WhatsApp: ${CONTACT_INFO.whatsapp}.
           Provide short, professional, plain-text answers. Encourage site visits.`
         }
