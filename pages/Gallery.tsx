@@ -6,63 +6,102 @@ import { GALLERY_VIDEOS, GALLERY_IMAGES } from '../constants';
 const Gallery: React.FC = () => {
   const [selectedAsset, setSelectedAsset] = useState<{ src: string, type: 'image' | 'video' } | null>(null);
   const [activeTab, setActiveTab] = useState<'all' | 'images' | 'videos'>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
 
   const videoAssets = GALLERY_VIDEOS.map(v => ({ ...v, type: 'video' as const }));
   const imageAssets = GALLERY_IMAGES.map(i => ({ ...i, type: 'image' as const }));
+  const initialAssets = [...videoAssets, ...imageAssets];
 
-  const allAssets = [...videoAssets, ...imageAssets].filter(asset => {
-    if (activeTab === 'all') return true;
-    if (activeTab === 'images') return asset.type === 'image';
-    if (activeTab === 'videos') return asset.type === 'video';
-    return true;
+  // Dynamically get unique categories
+  const categories = ['All', ...Array.from(new Set(initialAssets.map(a => a.category).filter(Boolean)))];
+
+  const filteredAssets = initialAssets.filter(asset => {
+    // Phase 1: Filter by Type (Tab)
+    const matchesType =
+      activeTab === 'all' ||
+      (activeTab === 'images' && asset.type === 'image') ||
+      (activeTab === 'videos' && asset.type === 'video');
+
+    // Phase 2: Filter by Category
+    const matchesCategory =
+      selectedCategory === 'All' ||
+      asset.category === selectedCategory;
+
+    return matchesType && matchesCategory;
   });
 
   return (
-    <div className="pt-20 md:pt-24 min-h-screen">
+    <div className="pt-20 md:pt-24 min-h-screen bg-[#FDFCF0]/50">
       <div className="max-w-7xl mx-auto px-4 py-8 md:py-16">
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-2xl md:text-6xl font-bold text-slate-900 mb-4 font-serif">Gallery</h1>
+        <div className="text-center mb-10 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-600 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mb-4 border border-amber-500/20">
+              Visual Showcase
+            </span>
+            <h1 className="text-3xl md:text-7xl font-bold text-slate-900 mb-6 font-serif">Kodiero Gallery</h1>
+          </motion.div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-2 md:p-3 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100 max-w-4xl mx-auto">
-            {/* Category Filter */}
-            <div className="flex bg-slate-100 p-1 rounded-xl md:rounded-2xl w-full md:w-auto">
-              <button
-                onClick={() => setActiveTab('all')}
-                className={`flex-1 md:flex-none px-4 md:px-8 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-sm font-bold transition-all ${activeTab === 'all' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'}`}
-              >
-                All
-              </button>
-              <button
-                onClick={() => setActiveTab('images')}
-                className={`flex-1 md:flex-none px-4 md:px-8 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-sm font-bold transition-all ${activeTab === 'images' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'}`}
-              >
-                <ImageIcon size={12} className="inline mr-1" /> Photos
-              </button>
-              <button
-                onClick={() => setActiveTab('videos')}
-                className={`flex-1 md:flex-none px-4 md:px-8 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-sm font-bold transition-all ${activeTab === 'videos' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'}`}
-              >
-                <VideoIcon size={12} className="inline mr-1" /> Videos
-              </button>
+          <div className="space-y-6 max-w-5xl mx-auto">
+            {/* Primary Filter (Type) & View Switcher */}
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 bg-white p-2 md:p-3 rounded-2xl md:rounded-3xl shadow-sm border border-gray-100">
+              <div className="flex bg-slate-100 p-1 rounded-xl md:rounded-2xl w-full md:w-auto">
+                <button
+                  onClick={() => setActiveTab('all')}
+                  className={`flex-1 md:flex-none px-4 md:px-8 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-sm font-bold transition-all ${activeTab === 'all' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'}`}
+                >
+                  All Assets
+                </button>
+                <button
+                  onClick={() => setActiveTab('images')}
+                  className={`flex-1 md:flex-none px-4 md:px-8 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-sm font-bold transition-all ${activeTab === 'images' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'}`}
+                >
+                  <ImageIcon size={12} className="inline mr-1" /> Photos
+                </button>
+                <button
+                  onClick={() => setActiveTab('videos')}
+                  className={`flex-1 md:flex-none px-4 md:px-8 py-1.5 md:py-2.5 rounded-lg md:rounded-xl text-[10px] md:text-sm font-bold transition-all ${activeTab === 'videos' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'}`}
+                >
+                  <VideoIcon size={12} className="inline mr-1" /> Videos
+                </button>
+              </div>
+
+              <div className="flex bg-slate-100 p-1 rounded-xl md:rounded-2xl shrink-0">
+                <button
+                  onClick={() => setViewMode('grid')}
+                  className={`p-1.5 md:p-2.5 rounded-lg md:rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-400'}`}
+                  title="Grid View"
+                >
+                  <LayoutGrid size={16} />
+                </button>
+                <button
+                  onClick={() => setViewMode('list')}
+                  className={`p-1.5 md:p-2.5 rounded-lg md:rounded-xl transition-all ${viewMode === 'list' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-400'}`}
+                  title="List View"
+                >
+                  <List size={16} />
+                </button>
+              </div>
             </div>
 
-            {/* View Switcher */}
-            <div className="flex bg-slate-100 p-1 rounded-xl md:rounded-2xl shrink-0">
-              <button
-                onClick={() => setViewMode('grid')}
-                className={`p-1.5 md:p-2.5 rounded-lg md:rounded-xl transition-all ${viewMode === 'grid' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-400'}`}
-                title="Grid View"
-              >
-                <LayoutGrid size={16} />
-              </button>
-              <button
-                onClick={() => setViewMode('list')}
-                className={`p-1.5 md:p-2.5 rounded-lg md:rounded-xl transition-all ${viewMode === 'list' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-400'}`}
-                title="List View"
-              >
-                <List size={16} />
-              </button>
+            {/* Secondary Filter (Categories) */}
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 px-4">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 md:px-6 py-1.5 md:py-2 rounded-full text-[9px] md:text-[11px] font-bold uppercase tracking-widest transition-all border ${selectedCategory === cat
+                    ? 'bg-slate-900 text-amber-500 border-slate-900 shadow-lg'
+                    : 'bg-white text-gray-400 border-gray-100 hover:border-amber-200'
+                    }`}
+                >
+                  {cat}
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -76,7 +115,7 @@ const Gallery: React.FC = () => {
               exit={{ opacity: 0, y: -10 }}
               className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6"
             >
-              {allAssets.map((asset) => (
+              {filteredAssets.map((asset) => (
                 <motion.div
                   key={asset.id}
                   /* Fix: layoutId expects a string, so we explicitly convert the ID (which can be string or number) to a string */
@@ -115,7 +154,7 @@ const Gallery: React.FC = () => {
               exit={{ opacity: 0, y: -10 }}
               className="space-y-3 md:space-y-4 max-w-4xl mx-auto"
             >
-              {allAssets.map((asset) => (
+              {filteredAssets.map((asset) => (
                 <motion.div
                   key={asset.id}
                   /* Fix: layoutId expects a string, so we explicitly convert the ID to a string */
