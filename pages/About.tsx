@@ -1,17 +1,17 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Target, 
-  Eye, 
-  CheckCircle, 
-  TrendingUp, 
-  MapPin, 
-  Building2, 
-  ShieldCheck, 
-  Zap, 
-  Users, 
-  Award, 
+import {
+  Target,
+  Eye,
+  CheckCircle,
+  TrendingUp,
+  MapPin,
+  Building2,
+  ShieldCheck,
+  Zap,
+  Users,
+  Award,
   LucideIcon,
   FlameKindling,
   LineChart,
@@ -46,7 +46,7 @@ const About: React.FC = () => {
       <section className="bg-slate-900 py-12 md:py-32 relative overflow-hidden text-white">
         <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 blur-[100px] rounded-full" />
         <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-4xl mx-auto"
@@ -74,11 +74,11 @@ const About: React.FC = () => {
               <p className="text-gray-600 text-sm md:text-lg leading-relaxed">
                 We represent a vision of creating spaces where businesses operate efficiently, attract customers, and grow sustainably. Our approach is tenant-first, emphasizing reliability, transparency, and proactive management. Kodiero Investments is more than a landlord — we are a partner in business success.
               </p>
-              <div className="grid sm:grid-cols-2 gap-4 pt-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4 pt-4">
                 {companyPillars.map((pillar, i) => (
-                  <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
-                    <h4 className="font-bold text-slate-900 text-sm mb-1">{pillar.title}</h4>
-                    <p className="text-xs text-gray-400">{pillar.desc}</p>
+                  <div key={i} className="bg-white p-3 md:p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <h4 className="font-bold text-slate-900 text-[10px] md:text-sm mb-1">{pillar.title}</h4>
+                    <p className="text-[9px] md:text-xs text-gray-400">{pillar.desc}</p>
                   </div>
                 ))}
               </div>
@@ -99,18 +99,18 @@ const About: React.FC = () => {
           <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif mt-2">Kodiero Business Center</h2>
           <p className="text-gray-500 text-sm md:text-lg max-w-2xl mx-auto mt-4">Purpose-built commercial excellence in Kondele, designed to accommodate a wide range of enterprises from corporate offices to retail shops.</p>
         </div>
-        
-        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
           {propertyHighlights.map((highlight, i) => (
-            <div key={i} className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 flex flex-col items-center text-center">
-              <div className="bg-white p-4 rounded-2xl shadow-sm text-amber-500 mb-6">
-                {i === 0 && <TrendingUp size={24} />}
-                {i === 1 && <Building2 size={24} />}
-                {i === 2 && <Zap size={24} />}
-                {i === 3 && <MapPin size={24} />}
+            <div key={i} className="bg-slate-50 p-4 md:p-8 rounded-[1.5rem] md:rounded-[2rem] border border-slate-100 flex flex-col items-center text-center">
+              <div className="bg-white p-2 md:p-4 rounded-xl md:rounded-2xl shadow-sm text-amber-500 mb-3 md:mb-6">
+                {i === 0 && <TrendingUp size={16} className="md:w-6 md:h-6" />}
+                {i === 1 && <Building2 size={16} className="md:w-6 md:h-6" />}
+                {i === 2 && <Zap size={16} className="md:w-6 md:h-6" />}
+                {i === 3 && <MapPin size={16} className="md:w-6 md:h-6" />}
               </div>
-              <h4 className="font-bold text-slate-800 mb-2">{highlight.title}</h4>
-              <p className="text-xs text-gray-500 leading-relaxed">{highlight.desc}</p>
+              <h4 className="font-bold text-slate-800 text-xs md:text-base mb-1 md:mb-2">{highlight.title}</h4>
+              <p className="text-[9px] md:text-xs text-gray-500 leading-relaxed">{highlight.desc}</p>
             </div>
           ))}
         </div>
@@ -118,18 +118,18 @@ const About: React.FC = () => {
 
       {/* Mission & Vision */}
       <section className="py-12 md:py-24 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-slate-900 p-8 md:p-16 rounded-[3rem] text-white">
-            <Target className="text-amber-500 mb-6" size={40} />
-            <h3 className="text-2xl md:text-4xl font-bold mb-6 font-serif">Our Mission</h3>
-            <p className="text-gray-400 text-sm md:text-xl leading-relaxed">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-2 gap-3 md:gap-6">
+          <div className="bg-slate-900 p-6 md:p-16 rounded-[2rem] md:rounded-[3rem] text-white">
+            <Target className="text-amber-500 mb-4 md:mb-6 w-8 h-8 md:w-10 md:h-10" />
+            <h3 className="text-lg md:text-4xl font-bold mb-3 md:mb-6 font-serif">Our Mission</h3>
+            <p className="text-gray-400 text-[10px] md:text-xl leading-relaxed">
               To provide high-quality, managed spaces that foster entrepreneurship in Kisumu City. We aim to offer an environment where businesses can focus on growth while we handle the infrastructure, utilities, and security.
             </p>
           </div>
-          <div className="bg-amber-500 p-8 md:p-16 rounded-[3rem] text-white shadow-2xl shadow-amber-500/20">
-            <Eye className="text-white mb-6" size={40} />
-            <h3 className="text-2xl md:text-4xl font-bold mb-6 font-serif">Our Vision</h3>
-            <p className="text-amber-50 text-sm md:text-xl leading-relaxed">
+          <div className="bg-amber-500 p-6 md:p-16 rounded-[2rem] md:rounded-[3rem] text-white shadow-2xl shadow-amber-500/20">
+            <Eye className="text-white mb-4 md:mb-6 w-8 h-8 md:w-10 md:h-10" />
+            <h3 className="text-lg md:text-4xl font-bold mb-3 md:mb-6 font-serif">Our Vision</h3>
+            <p className="text-amber-50 text-[10px] md:text-xl leading-relaxed">
               To be the leading commercial real estate partner in Western Kenya, recognized for modern, professional infrastructure, transparency and trust in management, and supporting tenant growth and operational success.
             </p>
           </div>
@@ -144,7 +144,7 @@ const About: React.FC = () => {
             <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif mt-2">Why Partner With Us</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {/* Core Facilities */}
             <div className="space-y-6">
               <div className="flex items-center gap-3">
@@ -213,7 +213,7 @@ const About: React.FC = () => {
               <p className="text-gray-400 text-sm md:text-lg leading-relaxed mb-8">
                 Kondele is transforming into a commercial epicenter in Kisumu. Operating in Kodiero Business Center enables tenants to ride the wave of growth while securing their brand presence.
               </p>
-              <div className="grid gap-4">
+              <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {[
                   { label: "High Demand", text: "Increasing foot traffic for retail and office spaces." },
                   { label: "New Presence", text: "Banks, clinics, and service providers establishing a presence." },
@@ -238,7 +238,7 @@ const About: React.FC = () => {
             <div className="flex-1 space-y-6">
               <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs">Kondele Advantage</span>
               <h2 className="text-3xl md:text-5xl font-bold font-serif leading-tight">
-                Strategically Positioned <br/>
+                Strategically Positioned <br />
                 <span className="text-amber-500">for Modern Growth</span>
               </h2>
               <p className="text-gray-400 text-xs md:text-lg leading-relaxed">
@@ -246,9 +246,9 @@ const About: React.FC = () => {
               </p>
             </div>
             <div className="flex-1 w-full aspect-video rounded-3xl overflow-hidden border border-white/10 grayscale opacity-70">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.088151213093!2d34.7709337!3d-0.0886475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa48d3c010d49%3A0x6a10067b8a74e2d3!2sKondele%2C%20Kisumu!5e0!3m2!1sen!2ske!4v1715000000000!5m2!1sen!2ske" 
-                width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.088151213093!2d34.7709337!3d-0.0886475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa48d3c010d49%3A0x6a10067b8a74e2d3!2sKondele%2C%20Kisumu!5e0!3m2!1sen!2ske!4v1715000000000!5m2!1sen!2ske"
+                width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy"
                 title="Strategic Kondele Map"
               ></iframe>
             </div>
@@ -265,7 +265,7 @@ const About: React.FC = () => {
           <h2 className="text-3xl md:text-5xl font-bold font-serif text-slate-900">Experience the Center Firsthand</h2>
           <p className="text-xs md:text-xl text-gray-600">We invite prospective tenants to schedule a private tour and explore available spaces. Your business deserves a space built for growth.</p>
           <div className="pt-8 flex flex-col sm:flex-row justify-center gap-4">
-            <motion.a 
+            <motion.a
               href="/#/contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -273,7 +273,7 @@ const About: React.FC = () => {
             >
               Book Site Visit Today
             </motion.a>
-            <motion.a 
+            <motion.a
               href="/#/spaces"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
