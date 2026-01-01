@@ -1,162 +1,170 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle2, MapPin, TrendingUp, Users } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { CheckCircle2, MapPin, TrendingUp, Users, Play, Quote, Star, ChevronLeft, ChevronRight, Building2, Briefcase, Store } from 'lucide-react';
 import Hero from '../components/Hero';
 import { AMENITIES, SPACES, getIcon } from '../constants';
 import { Link } from 'react-router-dom';
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
+
+const TESTIMONIALS = [
+  { name: "S. Omondi", role: "CEO, TechLoom", text: "Moving to Kodiero was the best decision for our startup. The constant power and high-speed fiber have been game-changers." },
+  { name: "Samuel Kamau", role: "Retailer", text: "The ground floor shops have incredible visibility. Our foot traffic doubled within three months of relocating here." },
+  { name: "Jane Anyango", role: "Architect", text: "Secure, professional, and excellently managed. It's the perfect environment for client meetings and focus work." },
+];
+
 const Home: React.FC = () => {
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const nextTestimonial = () => {
+    setActiveTestimonial((prev) => (prev + 1) % TESTIMONIALS.length);
+  };
+
+  const prevTestimonial = () => {
+    setActiveTestimonial((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextTestimonial, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="pb-20">
+    <div className="pb-10 md:pb-20">
       <Hero />
 
-      {/* Highlights Section */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 font-serif"
-            >
-              The Best Choice for Your Growing Business
-            </motion.h2>
-            <p className="text-gray-600 text-lg">
-              Kodiero Investments provides the perfect blend of location, luxury, and logistics for entrepreneurs in the Lakeside City.
-            </p>
-          </div>
+      {/* Trust Statement / Sub-Hero */}
+      <section className="py-12 md:py-24 bg-slate-900 text-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-xl md:text-4xl font-serif mb-6 leading-relaxed italic text-gray-300">
+              "The latest addition to Kisumu City’s growing commercial landscape, Kodiero Business Center is designed to meet the demands of today’s businesses — combining modern infrastructure, reliable utilities, and convenience under one roof."
+            </h2>
+            <div className="w-20 h-1 bg-amber-500 mx-auto"></div>
+          </motion.div>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Highlights Section */}
+      <section className="py-12 md:py-24 bg-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            variants={fadeInUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-center max-w-3xl mx-auto mb-10 md:mb-20"
+          >
+            <h2 className="text-2xl md:text-5xl font-extrabold text-slate-900 mb-4 md:mb-6 font-serif tracking-tight leading-tight">
+              A Foundation for <span className="text-amber-500 text-6xl">Success.</span>
+            </h2>
+            <p className="text-sm md:text-xl text-gray-500 leading-relaxed">
+              We understand that a business location is more than just a building — it is the cornerstone of your brand's growth in the heart of Kisumu.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-10">
             {[
               { 
-                icon: <MapPin className="text-amber-500" size={32} />, 
-                title: "Prime Location", 
-                desc: "Situated in Kondele, the beating heart of Kisumu's trade, ensuring maximum visibility and accessibility." 
+                icon: <MapPin className="text-amber-500" size={24} />, 
+                title: "Strategic Location", 
+                desc: "Kondele is a major transport nexus linking Kibos Road to key city routes." 
               },
               { 
-                icon: <TrendingUp className="text-amber-500" size={32} />, 
-                title: "Affordable Rates", 
-                desc: "High-value commercial spaces with flexible lease terms designed to help startups and established firms thrive." 
+                icon: <TrendingUp className="text-amber-500" size={24} />, 
+                title: "High Potential", 
+                desc: "Experience rapid transformation with high foot and vehicle traffic daily." 
               },
               { 
-                icon: <Users className="text-amber-500" size={32} />, 
-                title: "Professional Community", 
-                desc: "Join a network of successful professionals and retailers within a managed, secure corporate environment." 
+                icon: <Users className="text-amber-500" size={24} />, 
+                title: "Long-term Value", 
+                desc: "Operating here places your business in a high-growth prospect zone." 
               },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-slate-50 p-8 rounded-3xl border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50 transition-all group"
+                className="bg-slate-50 p-6 md:p-12 rounded-3xl border border-gray-100 shadow-sm flex flex-col items-center text-center md:items-start md:text-left"
               >
-                <div className="mb-6 inline-block p-3 bg-white rounded-2xl shadow-sm group-hover:bg-amber-500 group-hover:text-white transition-all">
+                <div className="mb-4 md:mb-8 bg-white p-3 md:p-5 rounded-2xl shadow-sm">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-4">{item.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{item.desc}</p>
+                <h3 className="text-sm md:text-2xl font-bold mb-2 md:mb-4 text-slate-800">{item.title}</h3>
+                <p className="text-[10px] md:text-base text-gray-600 leading-tight">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Amenities Grid */}
-      <section className="py-24 bg-slate-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-amber-500 font-bold uppercase tracking-widest text-sm mb-4 block">World-Class Features</span>
-              <h2 className="text-3xl md:text-5xl font-bold mb-8 font-serif">Designed for Seamless Operations</h2>
-              <p className="text-gray-400 text-lg mb-10">
-                We've invested in top-tier infrastructure so you can focus on what matters most—running your business efficiently.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {AMENITIES.map((amenity) => (
-                  <div key={amenity.id} className="flex gap-4">
-                    <div className="text-amber-500 shrink-0">
-                      {getIcon(amenity.icon, "w-6 h-6")}
-                    </div>
-                    <div>
-                      <h4 className="font-bold mb-1">{amenity.title}</h4>
-                      <p className="text-xs text-gray-500">{amenity.description}</p>
-                    </div>
-                  </div>
-                ))}
+      {/* Who Should Consider Section */}
+      <section className="py-12 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif">Who Should Consider Us?</h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { icon: <TrendingUp />, label: "Startups & Growing SMEs", desc: "Scale your business in a credible environment designed for expansion." },
+              { icon: <Briefcase />, label: "Professionals & Firms", desc: "Perfect for law firms, consultancies, IT hubs, and corporate offices." },
+              { icon: <Store />, label: "Retailers & Entrepreneurs", desc: "Gain visibility with strategic frontage and high walk-in traffic." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:translate-y-[-5px] transition-all">
+                <div className="text-amber-500 mb-4">{item.icon}</div>
+                <h4 className="font-bold text-lg mb-2">{item.label}</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
-            </div>
-            <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000" 
-                alt="Modern Office" 
-                className="rounded-3xl shadow-2xl relative z-10"
-              />
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-amber-500 rounded-3xl -z-0"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 border-2 border-white/20 rounded-3xl -z-0"></div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Spaces */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-xl">
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 font-serif">Featured Business Units</h2>
-              <p className="text-gray-600 text-lg">
-                Explore our diverse range of spaces. From boutique shops to expansive executive offices.
-              </p>
+      {/* Available Units */}
+      <section className="py-12 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+            <div>
+              <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif">Flexible Spaces</h2>
+              <p className="text-gray-500 text-sm mt-2">Whether consulting or retailing, we have the right unit for you.</p>
             </div>
-            <Link to="/spaces" className="text-amber-600 font-bold hover:text-amber-700 flex items-center gap-2 group">
-              View All Spaces <TrendingUp size={20} className="group-hover:translate-x-1 transition-transform" />
+            <Link to="/spaces" className="text-amber-600 font-bold text-xs md:text-base flex items-center gap-2 hover:translate-x-1 transition-transform">
+              Explore All Units <TrendingUp size={16} />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {SPACES.map((space, idx) => (
+          <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8">
+            {SPACES.map((space) => (
               <motion.div
                 key={space.id}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group"
+                className="bg-slate-50 rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col md:flex-row group hover:shadow-xl transition-all"
               >
-                <div className="relative h-64 overflow-hidden">
-                  <img src={space.image} alt={space.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-amber-600">
-                    {space.type}
-                  </div>
-                  {space.status === 'Available' && (
-                    <div className="absolute bottom-4 right-4 bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">
-                      {space.status}
-                    </div>
-                  )}
+                <div className="relative h-48 md:h-auto md:w-2/5 overflow-hidden">
+                  <img src={space.image} alt={space.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
                 </div>
-                <div className="p-8">
-                  <h3 className="text-xl font-bold mb-2">{space.title}</h3>
-                  <div className="flex items-center text-gray-500 text-sm mb-4">
-                    <CheckCircle2 size={16} className="text-amber-500 mr-2" />
-                    {space.size}
-                  </div>
+                <div className="p-6 md:p-10 flex-1 flex flex-col justify-center">
+                  <span className="text-amber-600 text-[10px] font-bold uppercase tracking-widest mb-2">{space.type}</span>
+                  <h3 className="text-lg md:text-3xl font-bold mb-4 text-slate-800 font-serif">{space.title}</h3>
                   <div className="space-y-2 mb-6">
-                    {space.features.slice(0, 2).map((f, i) => (
-                      <div key={i} className="text-xs text-gray-600 flex items-center">
-                        <span className="w-1.5 h-1.5 bg-slate-300 rounded-full mr-2"></span>
-                        {f}
+                    {space.features.map((f, i) => (
+                      <div key={i} className="flex items-center gap-2 text-xs md:text-sm text-gray-600">
+                        <CheckCircle2 size={14} className="text-emerald-500" />
+                        <span>{f}</span>
                       </div>
                     ))}
                   </div>
                   <Link 
                     to="/contact" 
-                    className="block text-center py-3 bg-slate-900 text-white rounded-xl font-bold hover:bg-amber-500 transition-colors"
+                    className="mt-auto inline-block text-center py-3 px-8 bg-slate-900 text-white rounded-xl font-bold text-sm hover:bg-amber-500 transition-colors"
                   >
-                    Inquire Now
+                    Inquire Availability
                   </Link>
                 </div>
               </motion.div>
@@ -165,32 +173,16 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="px-4">
-        <div className="max-w-7xl mx-auto bg-amber-500 rounded-[3rem] py-20 px-8 relative overflow-hidden text-center">
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 font-serif leading-tight">Ready to elevate your business presence?</h2>
-            <p className="text-amber-100 text-xl mb-12">
-              Book a site visit today and experience why Kodiero is the preferred hub for Kisumu's rising businesses.
-            </p>
+      {/* CTA */}
+      <section className="px-4 py-12">
+        <div className="max-w-7xl mx-auto bg-amber-500 rounded-[3rem] md:rounded-[4rem] py-16 md:py-32 px-6 text-center shadow-2xl relative overflow-hidden">
+          <div className="relative z-10">
+            <h2 className="text-2xl md:text-6xl font-bold text-white mb-6 md:mb-10 font-serif leading-tight">Your Business. Your Address.<br/>Your Growth.</h2>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link 
-                to="/contact" 
-                className="bg-white text-amber-600 px-10 py-4 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all hover:-translate-y-1"
-              >
-                Book a Viewing
-              </Link>
-              <Link 
-                to="/about" 
-                className="bg-amber-600 text-white px-10 py-4 rounded-2xl font-bold text-lg hover:bg-amber-700 transition-all"
-              >
-                Learn More
-              </Link>
+              <Link to="/contact" className="bg-white text-amber-600 px-10 py-5 rounded-2xl font-extrabold text-lg shadow-lg hover:-translate-y-1 transition-all">Book Site Visit</Link>
+              <Link to="/about" className="bg-amber-700/30 text-white px-10 py-5 rounded-2xl font-bold text-lg border border-white/20 backdrop-blur-sm hover:bg-amber-700/50 transition-all">The Location Advantage</Link>
             </div>
           </div>
-          {/* Decorative Elements */}
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-amber-400/30 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-amber-600/30 rounded-full blur-3xl"></div>
         </div>
       </section>
     </div>

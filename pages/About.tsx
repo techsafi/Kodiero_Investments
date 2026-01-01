@@ -1,125 +1,107 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Eye, Award, CheckCircle } from 'lucide-react';
+import { Target, Eye, Award, CheckCircle, TrendingUp, MapPin, Building2, ShieldCheck } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <div className="pt-24">
+    <div className="pt-20 md:pt-24">
       {/* Header */}
-      <section className="bg-slate-900 py-32 relative overflow-hidden text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-4xl md:text-7xl font-bold mb-8 font-serif"
+      <section className="bg-slate-900 py-16 md:py-32 relative overflow-hidden text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center max-w-4xl mx-auto"
           >
-            Pioneering Commercial <br/> Excellence in <span className="text-amber-500 underline decoration-amber-500/30">Kisumu</span>
-          </motion.h1>
-          <p className="text-gray-400 text-xl max-w-2xl mx-auto leading-relaxed">
-            Kodiero Investments is more than a property developer; we are a partner in your business growth, providing the infrastructure for the next generation of Kisumu entrepreneurs.
-          </p>
+            <h1 className="text-3xl md:text-7xl font-bold mb-6 font-serif leading-tight">
+              Crafting Foundations for <span className="text-amber-500 italic">Success</span>
+            </h1>
+            <p className="text-gray-400 text-sm md:text-xl leading-relaxed">
+              Kodiero Investments is a property development and management leader committed to providing high-quality, sustainable commercial spaces in Kisumu City.
+            </p>
+          </motion.div>
         </div>
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
       </section>
 
-      {/* Story */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-20 items-center">
-            <div>
-              <img 
-                src="https://images.unsplash.com/photo-1577412647305-991150c7d163?auto=format&fit=crop&q=80&w=1000" 
-                alt="Business Discussion" 
-                className="rounded-[3rem] shadow-2xl"
-              />
-            </div>
-            <div className="space-y-8">
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 font-serif leading-tight">Empowering Businesses in Kondele</h2>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Founded with a vision to transform the commercial landscape of Kondele, Kodiero Business Center was built to bridge the gap between high-end office requirements and affordability.
+      {/* Two Narratives */}
+      <section className="py-12 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-12 md:gap-24">
+            <div className="space-y-6">
+              <span className="text-amber-600 font-bold uppercase tracking-widest text-xs">The Company</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-slate-900 font-serif">Kodiero Investments</h2>
+              <p className="text-gray-600 text-sm md:text-lg leading-relaxed">
+                We represent a vision of creating spaces where businesses can operate efficiently, attract customers easily, and grow sustainably. Our focus is on modern construction standards and long-term value for every tenant who joins our ecosystem.
               </p>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                Our strategic location on the Kondele-Kibos axis places our tenants at the heart of the city's growth, surrounded by a vibrant community and key financial services.
-              </p>
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { count: "10+", label: "Years Experience" },
-                  { count: "50+", label: "Happy Tenants" },
-                  { count: "95%", label: "Occupancy Rate" },
-                  { count: "24/7", label: "Operations Support" },
-                ].map((stat, i) => (
-                  <div key={i} className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
-                    <div className="text-3xl font-bold text-amber-500 mb-1">{stat.count}</div>
-                    <div className="text-sm font-semibold text-gray-500">{stat.label}</div>
-                  </div>
+              <ul className="space-y-3">
+                {['Strategic Property Selections', 'Modern Construction Standards', 'Reliable Facility Management', 'Tenant-First Communication'].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                    <CheckCircle className="text-amber-500" size={18} />
+                    {item}
+                  </li>
                 ))}
+              </ul>
+            </div>
+            <div className="space-y-6">
+              <span className="text-amber-600 font-bold uppercase tracking-widest text-xs">The Property</span>
+              <h2 className="text-2xl md:text-4xl font-bold text-slate-900 font-serif">Kodiero Business Center</h2>
+              <p className="text-gray-600 text-sm md:text-lg leading-relaxed">
+                Kodiero Business Center is a purpose-built commercial building designed to serve a wide range of enterprises—from retail shops to corporate consultancies. Located in the heart of Kondele, the building is the nexus of Kisumu's northern commercial growth.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-50 p-4 rounded-2xl border border-gray-100">
+                  <div className="font-bold text-amber-600 text-lg">High Visibility</div>
+                  <p className="text-[10px] text-gray-500">Perfect for signage and retail branding.</p>
+                </div>
+                <div className="bg-slate-50 p-4 rounded-2xl border border-gray-100">
+                  <div className="font-bold text-amber-600 text-lg">Modern Infrastructure</div>
+                  <p className="text-[10px] text-gray-500">Reliable utilities and backup systems.</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Mission Vision */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="bg-white p-12 rounded-[2rem] shadow-xl border border-gray-100"
-            >
-              <div className="bg-amber-100 w-16 h-16 rounded-2xl flex items-center justify-center text-amber-600 mb-8">
-                <Target size={32} />
-              </div>
-              <h3 className="text-3xl font-bold mb-6 font-serif">Our Mission</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                To provide accessible, high-quality, and professionally managed commercial spaces that foster entrepreneurship and drive economic development in Kisumu.
-              </p>
-            </motion.div>
-            <motion.div 
-              whileHover={{ y: -10 }}
-              className="bg-white p-12 rounded-[2rem] shadow-xl border border-gray-100"
-            >
-              <div className="bg-slate-100 w-16 h-16 rounded-2xl flex items-center justify-center text-slate-900 mb-8">
-                <Eye size={32} />
-              </div>
-              <h3 className="text-3xl font-bold mb-6 font-serif">Our Vision</h3>
-              <p className="text-gray-600 text-lg leading-relaxed">
-                To be the leading commercial real estate partner in Western Kenya, recognized for integrity, modern infrastructure, and exceptional tenant support.
-              </p>
-            </motion.div>
+      {/* Location Advantage */}
+      <section className="py-12 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="text-center mb-12 md:mb-20">
+            <h2 className="text-2xl md:text-5xl font-bold font-serif mb-4">Location Advantage: <span className="text-amber-600">Kondele</span></h2>
+            <p className="text-gray-500 max-w-2xl mx-auto">Kondele is Kisumu’s fastest-growing commercial hub, experiencing rapid transformation driven by improved infrastructure and expanding population.</p>
           </div>
-        </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-16 font-serif">Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-4 gap-6">
             {[
-              { 
-                icon: <Award size={48} className="text-amber-500" />, 
-                title: "Excellence", 
-                desc: "We maintain our facilities to the highest standards, ensuring a professional environment at all times." 
-              },
-              { 
-                icon: <CheckCircle size={48} className="text-amber-500" />, 
-                title: "Transparency", 
-                desc: "Honest lease terms and clear communication are the foundation of our tenant relationships." 
-              },
-              { 
-                icon: <Target size={48} className="text-amber-500" />, 
-                title: "Innovation", 
-                desc: "We continuously upgrade our infrastructure to meet the evolving digital needs of modern business." 
-              },
-            ].map((v, i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="mb-8">{v.icon}</div>
-                <h4 className="text-2xl font-bold mb-4">{v.title}</h4>
-                <p className="text-gray-500 max-w-sm mx-auto leading-relaxed">{v.desc}</p>
+              { icon: <MapPin />, title: "Transport Hub", desc: "Major connection point linking Kibos Road to key city routes." },
+              { icon: <TrendingUp />, title: "Economic Activity", desc: "Vibrant day-and-night economy with high customer traffic." },
+              { icon: <Building2 />, title: "Growth Hub", desc: "Surrounded by expanding residential and institutional areas." },
+              { icon: <ShieldCheck />, title: "Future Proof", desc: "Strategic positioning ensures strong long-term growth prospects." }
+            ].map((adv, i) => (
+              <div key={i} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm text-center">
+                <div className="text-amber-500 mb-6 flex justify-center">{adv.icon}</div>
+                <h4 className="font-bold mb-2">{adv.title}</h4>
+                <p className="text-xs text-gray-500 leading-relaxed">{adv.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission/Vision */}
+      <section className="py-12 md:py-24">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-900 p-12 rounded-[3rem] text-white">
+              <Target className="text-amber-500 mb-6" size={32} />
+              <h3 className="text-3xl font-bold mb-4 font-serif">Our Mission</h3>
+              <p className="text-gray-400 leading-relaxed">To provide high-quality managed spaces that foster entrepreneurship in Kisumu. We aim to be the foundation upon which your business builds its future.</p>
+            </div>
+            <div className="bg-amber-500 p-12 rounded-[3rem] text-white">
+              <Eye className="text-white mb-6" size={32} />
+              <h3 className="text-3xl font-bold mb-4 font-serif">Our Vision</h3>
+              <p className="text-amber-100 leading-relaxed">To be the leading commercial real estate partner in Western Kenya, recognized for modern infrastructure, transparency, and tenant growth.</p>
+            </div>
           </div>
         </div>
       </section>

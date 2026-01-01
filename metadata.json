@@ -1,7 +1,8 @@
 {
-  "name": "Kodiero Investments - Business Center",
-  "description": "Modern, fast, and scalable web portal for Kodiero Business Center in Kondele, Kisumu, showcasing prime commercial spaces and office amenities.",
+  "name": "Kodiero Investments - Kodiero Business Center",
+  "description": "Prime office and retail spaces for rent in Kondele, Kisumu. Modern commercial property along Kibos Road with backup power, security, and high foot traffic.",
   "requestFramePermissions": [
     "geolocation"
-  ]
+  ],
+  "keywords": "office space Kisumu, shops for rent Kondele, Kodiero Business Center, commercial property Kisumu, backup power offices Kisumu"
 }
