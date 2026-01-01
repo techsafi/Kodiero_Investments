@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { NAV_ITEMS } from '../constants';
+import { NAV_ITEMS, getIcon } from '../constants';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,12 +54,13 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`text-sm font-semibold tracking-wide hover:text-amber-500 transition-all relative group ${
+                className={`flex items-center gap-1.5 text-sm font-semibold tracking-wide hover:text-amber-500 transition-all relative group ${
                   location.pathname === item.path 
                     ? 'text-amber-500' 
                     : isScrolled ? 'text-gray-800' : 'text-white'
                 }`}
               >
+                {item.icon && getIcon(item.icon, "w-4 h-4")}
                 {item.label}
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-500 transition-all group-hover:w-full ${location.pathname === item.path ? 'w-full' : ''}`}></span>
               </Link>
@@ -72,7 +73,7 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* Mobile Toggle - Smaller for more desktop feel */}
+          {/* Mobile Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -84,7 +85,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu - More compact */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div 
@@ -99,10 +100,11 @@ const Navbar: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`block text-sm font-bold px-4 py-2.5 rounded-xl transition-all ${
+                  className={`flex items-center gap-3 text-sm font-bold px-4 py-2.5 rounded-xl transition-all ${
                     location.pathname === item.path ? 'bg-amber-500 text-white' : 'text-gray-800 hover:bg-gray-100'
                   }`}
                 >
+                  {item.icon && getIcon(item.icon, "w-5 h-5 opacity-70")}
                   {item.label}
                 </Link>
               ))}

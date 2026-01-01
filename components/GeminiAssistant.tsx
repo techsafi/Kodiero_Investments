@@ -1,11 +1,12 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { GoogleGenAI } from '@google/genai';
-import { MessageSquare, X, Send, Bot, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send, Bot, Sparkles, Power } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CONTACT_INFO } from '../constants';
 
 const GeminiAssistant: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [showHint, setShowHint] = useState(false);
@@ -17,7 +18,7 @@ const GeminiAssistant: React.FC = () => {
 
   // Periodic nudge logic
   useEffect(() => {
-    if (isOpen) {
+    if (!isVisible || isOpen) {
       setShowHint(false);
       return;
     }
@@ -29,17 +30,15 @@ const GeminiAssistant: React.FC = () => {
       "I can help with pricing!"
     ];
     
-    let hintIndex = 0;
-    
     const interval = setInterval(() => {
-      if (!isOpen) {
+      if (!isOpen && isVisible) {
         setShowHint(true);
         setTimeout(() => setShowHint(false), 6000); // Show for 6 seconds
       }
     }, 20000); // Every 20 seconds
 
     return () => clearInterval(interval);
-  }, [isOpen]);
+  }, [isOpen, isVisible]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -99,6 +98,8 @@ const GeminiAssistant: React.FC = () => {
     }
   };
 
+  if (!isVisible) return null;
+
   return (
     <div className="fixed bottom-6 right-6 z-[100]">
       <AnimatePresence>
@@ -123,12 +124,24 @@ const GeminiAssistant: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <button 
-                onClick={() => setIsOpen(false)} 
-                className="bg-white/10 hover:bg-white/20 p-2 rounded-xl transition-colors"
-              >
-                <X size={20} />
-              </button>
+              <div className="flex items-center gap-2 relative z-20">
+                <button 
+                  title="Dismiss AI Assistant"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsVisible(false);
+                  }}
+                  className="bg-red-500/20 hover:bg-red-500/40 p-2 rounded-xl transition-colors text-red-200"
+                >
+                  <Power size={18} />
+                </button>
+                <button 
+                  onClick={() => setIsOpen(false)} 
+                  className="bg-white/10 hover:bg-white/20 p-2 rounded-xl transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-5 bg-slate-50">
@@ -179,7 +192,19 @@ const GeminiAssistant: React.FC = () => {
             </div>
           </motion.div>
         ) : (
-          <div className="relative">
+          <div className="relative group/trigger">
+            {/* Dismiss Button on Trigger */}
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsVisible(false);
+              }}
+              className="absolute -top-2 -left-2 bg-slate-900 text-white p-1 rounded-full shadow-lg opacity-0 group-hover/trigger:opacity-100 transition-opacity z-20 border border-white/20 hover:bg-red-500"
+              title="Close AI Assistant"
+            >
+              <X size={12} />
+            </button>
+
             {/* Nudge Bubble */}
             <AnimatePresence>
               {showHint && (

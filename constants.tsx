@@ -9,7 +9,12 @@ import {
   Building2, 
   Briefcase, 
   Store,
-  FlameKindling
+  FlameKindling,
+  Home,
+  Info,
+  LayoutGrid,
+  Image as ImageIcon,
+  PhoneCall
 } from 'lucide-react';
 import { NavItem, Amenity, Space } from './types';
 
@@ -21,11 +26,11 @@ export const COLORS = {
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Spaces', path: '/spaces' },
-  { label: 'Gallery', path: '/gallery' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Home', path: '/', icon: 'Home' },
+  { label: 'About', path: '/about', icon: 'Info' },
+  { label: 'Spaces', path: '/spaces', icon: 'LayoutGrid' },
+  { label: 'Gallery', path: '/gallery', icon: 'ImageIcon' },
+  { label: 'Contact', path: '/contact', icon: 'PhoneCall' },
 ];
 
 export const AMENITIES: Amenity[] = [
@@ -115,6 +120,11 @@ export const getIcon = (name: string, className?: string) => {
     case 'Briefcase': return <Briefcase className={className} />;
     case 'Store': return <Store className={className} />;
     case 'FlameKindling': return <FlameKindling className={className} />;
+    case 'Home': return <Home className={className} />;
+    case 'Info': return <Info className={className} />;
+    case 'LayoutGrid': return <LayoutGrid className={className} />;
+    case 'ImageIcon': return <ImageIcon className={className} />;
+    case 'PhoneCall': return <PhoneCall className={className} />;
     default: return <Building2 className={className} />;
   }
 };

@@ -74,7 +74,12 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] md:text-xs text-center md:text-left">
-          <p>© {new Date().getFullYear()} Kodiero Investments. Modern commercial hubs in Kisumu City.</p>
+          <div className="flex flex-col items-center md:items-start gap-1">
+            <p>© {new Date().getFullYear()} Kodiero Investments. Modern commercial hubs in Kisumu City.</p>
+            <p className="text-slate-500">
+              Powered By <a href="https://tech-safi-k21q.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-amber-500 font-bold hover:underline transition-all">TechSafi</a>
+            </p>
+          </div>
           <div className="flex gap-8 font-bold uppercase tracking-widest">
             <a href="#" className="hover:text-amber-500 transition-colors">Privacy</a>
             <a href="#" className="hover:text-amber-500 transition-colors">Terms</a>
