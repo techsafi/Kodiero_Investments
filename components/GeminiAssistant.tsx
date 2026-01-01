@@ -10,7 +10,7 @@ const GeminiAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [showHint, setShowHint] = useState(false);
-  const [messages, setMessages] = useState<{role: 'user' | 'bot', text: string}[]>([
+  const [messages, setMessages] = useState<{ role: 'user' | 'bot', text: string }[]>([
     { role: 'bot', text: 'Hello! I am your Kodiero Assistant. How can I help you find the perfect business space in Kondele today?' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ const GeminiAssistant: React.FC = () => {
       "Need a site visit?",
       "I can help with pricing!"
     ];
-    
+
     const interval = setInterval(() => {
       if (!isOpen && isVisible) {
         setShowHint(true);
@@ -49,9 +49,10 @@ const GeminiAssistant: React.FC = () => {
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
-    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+    // Use the defined environment variable directly
+    const apiKey = (process.env.GEMINI_API_KEY || process.env.API_KEY) as string;
 
-    if (!apiKey) {
+    if (!apiKey || apiKey === 'your_gemini_api_key_here') {
       setMessages(prev => [...prev, { role: 'bot', text: "Service temporarily unavailable. Please call us at " + CONTACT_INFO.phone }]);
       return;
     }
@@ -62,7 +63,7 @@ const GeminiAssistant: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: apiKey as string });
+      const ai = new GoogleGenAI({ apiKey });
       const prompt = `
         You are a helpful and professional assistant for Kodiero Investments (Kodiero Business Center) in Kondele, Kisumu.
         Context:
@@ -82,7 +83,7 @@ const GeminiAssistant: React.FC = () => {
       `;
 
       const response = await ai.models.generateContent({
-        model: 'gemini-3-flash-preview',
+        model: 'gemini-2.0-flash',
         contents: prompt
       });
 
@@ -104,7 +105,7 @@ const GeminiAssistant: React.FC = () => {
     <div className="fixed bottom-6 right-6 z-[100]">
       <AnimatePresence>
         {isOpen ? (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50, scale: 0.9, transformOrigin: 'bottom right' }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
@@ -125,7 +126,7 @@ const GeminiAssistant: React.FC = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2 relative z-20">
-                <button 
+                <button
                   title="Dismiss AI Assistant"
                   onClick={() => {
                     setIsOpen(false);
@@ -135,8 +136,8 @@ const GeminiAssistant: React.FC = () => {
                 >
                   <Power size={18} />
                 </button>
-                <button 
-                  onClick={() => setIsOpen(false)} 
+                <button
+                  onClick={() => setIsOpen(false)}
                   className="bg-white/10 hover:bg-white/20 p-2 rounded-xl transition-colors"
                 >
                   <X size={20} />
@@ -146,17 +147,16 @@ const GeminiAssistant: React.FC = () => {
 
             <div ref={scrollRef} className="flex-1 overflow-y-auto p-5 space-y-5 bg-slate-50">
               {messages.map((m, i) => (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, x: m.role === 'user' ? 20 : -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  key={i} 
+                  key={i}
                   className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
-                  <div className={`max-w-[85%] p-4 rounded-2xl text-[13px] shadow-sm leading-relaxed ${
-                    m.role === 'user' 
-                    ? 'bg-amber-500 text-white rounded-br-none' 
+                  <div className={`max-w-[85%] p-4 rounded-2xl text-[13px] shadow-sm leading-relaxed ${m.role === 'user'
+                    ? 'bg-amber-500 text-white rounded-br-none'
                     : 'bg-white text-gray-800 rounded-bl-none border border-gray-100'
-                  }`}>
+                    }`}>
                     <p className="whitespace-pre-wrap">{m.text}</p>
                   </div>
                 </motion.div>
@@ -175,15 +175,15 @@ const GeminiAssistant: React.FC = () => {
             </div>
 
             <div className="p-5 bg-white border-t border-gray-100 flex gap-3">
-              <input 
-                type="text" 
+              <input
+                type="text"
                 placeholder="Ask about availability..."
                 className="flex-1 bg-gray-50 border border-gray-200 rounded-2xl px-5 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20"
                 value={input}
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleSend()}
               />
-              <button 
+              <button
                 onClick={handleSend}
                 className="bg-slate-900 text-white p-3.5 rounded-2xl hover:bg-slate-800 transition-colors shadow-xl active:scale-95"
               >
@@ -194,7 +194,7 @@ const GeminiAssistant: React.FC = () => {
         ) : (
           <div className="relative group/trigger">
             {/* Dismiss Button on Trigger */}
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 setIsVisible(false);
@@ -224,10 +224,10 @@ const GeminiAssistant: React.FC = () => {
             </AnimatePresence>
 
             {/* Main Button */}
-            <motion.button 
+            <motion.button
               initial={{ scale: 0, rotate: -20 }}
-              animate={{ 
-                scale: 1, 
+              animate={{
+                scale: 1,
                 rotate: 0,
                 y: [0, -10, 0] // Floating oscillation
               }}
@@ -242,7 +242,7 @@ const GeminiAssistant: React.FC = () => {
             >
               {/* Pulse Ring */}
               <span className="absolute inset-0 rounded-full bg-amber-500/40 animate-ping" />
-              
+
               <div className="relative flex items-center gap-3">
                 <MessageSquare size={26} className="relative z-10" />
                 <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 font-bold text-sm">
