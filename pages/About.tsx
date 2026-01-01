@@ -213,16 +213,16 @@ const About: React.FC = () => {
               <p className="text-gray-400 text-sm md:text-lg leading-relaxed mb-8">
                 Kondele is transforming into a commercial epicenter in Kisumu. Operating in Kodiero Business Center enables tenants to ride the wave of growth while securing their brand presence.
               </p>
-              <div className="grid grid-cols-2 gap-3 md:gap-4">
+              <div className="grid grid-cols-2 gap-2 md:gap-4">
                 {[
                   { label: "High Demand", text: "Increasing foot traffic for retail and office spaces." },
                   { label: "New Presence", text: "Banks, clinics, and service providers establishing a presence." },
                   { label: "Visibility", text: "Strategic location along Kibos Road ensures accessibility." },
                   { label: "Value", text: "Strong potential for long-term property value appreciation." }
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
-                    <div className="font-bold text-amber-500 text-xs uppercase tracking-widest shrink-0 mt-1">{item.label}</div>
-                    <p className="text-xs text-gray-400">{item.text}</p>
+                  <div key={i} className="flex flex-col gap-2 p-3 md:p-4 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="font-bold text-amber-500 text-[8px] md:text-xs uppercase tracking-widest leading-none">{item.label}</div>
+                    <p className="text-[9px] md:text-xs text-gray-400 leading-tight">{item.text}</p>
                   </div>
                 ))}
               </div>
