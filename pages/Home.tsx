@@ -1,15 +1,15 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  CheckCircle2, 
-  MapPin, 
-  TrendingUp, 
-  ArrowRight, 
-  Building2, 
-  Briefcase, 
-  Zap, 
-  ShieldCheck, 
+import {
+  CheckCircle2,
+  MapPin,
+  TrendingUp,
+  ArrowRight,
+  Building2,
+  Briefcase,
+  Zap,
+  ShieldCheck,
   Droplets,
   Phone,
   Mail
@@ -168,11 +168,11 @@ const Home: React.FC = () => {
               </p>
               <ul className="space-y-4 pt-4">
                 <li className="flex gap-4">
-                  <div className="text-amber-500"><Zap size={20}/></div>
+                  <div className="text-amber-500"><Zap size={20} /></div>
                   <p className="text-sm font-semibold text-slate-700">Automatic switch-over generators for uninterrupted power.</p>
                 </li>
                 <li className="flex gap-4">
-                  <div className="text-amber-500"><Droplets size={20}/></div>
+                  <div className="text-amber-500"><Droplets size={20} /></div>
                   <p className="text-sm font-semibold text-slate-700">Combined underground and overhead water storage reserves.</p>
                 </li>
               </ul>
@@ -200,14 +200,14 @@ const Home: React.FC = () => {
       {/* Location Advantage */}
       <section className="py-16 md:py-32 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10">
-           <img src="/images/exterior.jpg" className="w-full h-full object-cover" alt="Background" />
+          <img src="/images/exterior.jpg" className="w-full h-full object-cover" alt="Background" />
         </div>
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row gap-16 items-center">
             <div className="flex-1">
               <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs">The Kondele Advantage</span>
               <h2 className="text-3xl md:text-6xl font-bold font-serif leading-tight mt-4">
-                The Pulse of North <br/>
+                The Pulse of North <br />
                 <span className="text-amber-500 italic">Kisumu's Economy</span>
               </h2>
               <p className="text-gray-400 text-sm md:text-lg leading-relaxed mt-6">
@@ -225,9 +225,9 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="flex-1 w-full aspect-square md:aspect-video rounded-[3rem] overflow-hidden border-8 border-white/5">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.088151213093!2d34.7709337!3d-0.0886475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa48d3c010d49%3A0x6a10067b8a74e2d3!2sKondele%2C%20Kisumu!5e0!3m2!1sen!2ske!4v1715000000000!5m2!1sen!2ske" 
-                width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.088151213093!2d34.7709337!3d-0.0886475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa48d3c010d49%3A0x6a10067b8a74e2d3!2sKondele%2C%20Kisumu!5e0!3m2!1sen!2ske!4v1715000000000!5m2!1sen!2ske"
+                width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy"
                 title="Kodiero Business Center Map"
                 className="grayscale opacity-80 contrast-125"
               ></iframe>
@@ -236,52 +236,107 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Primary Call-to-Action */}
-      <section className="px-4 py-16 md:py-32">
-        <div className="max-w-7xl mx-auto bg-amber-500 rounded-[3rem] md:rounded-[5rem] py-16 md:py-32 px-8 text-center shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[100px] rounded-full" />
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-7xl font-bold text-white mb-8 font-serif leading-tight">
-              Secure Your Business <span className="text-slate-900 italic">Future Today.</span>
-            </h2>
-            <p className="text-amber-50 text-sm md:text-xl mb-12 opacity-90">
-              Join a curated community of professionals and retailers at Kisumu’s most strategic commercial address. Site visits are available daily by appointment.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link to="/contact" className="bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold text-sm md:text-lg shadow-2xl hover:bg-slate-800 transition-all">
-                Inquire About Space
-              </Link>
-              <Link to="/gallery" className="bg-white/20 text-white px-10 py-5 rounded-2xl font-bold text-sm md:text-lg border border-white/30 backdrop-blur-md hover:bg-white/30 transition-all">
-                Virtual Tour
-              </Link>
-            </div>
+      {/* Primary Call-to-Action - Premium Refined Style */}
+      <section className="px-4 py-20 md:py-32">
+        <div className="max-w-7xl mx-auto bg-slate-900 rounded-[3rem] md:rounded-[5rem] py-20 md:py-32 px-8 text-center shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] relative overflow-hidden border border-white/5">
+          {/* Decorative Elements */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-amber-500/5 blur-[120px] rounded-full" />
+          <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] bg-amber-600/5 blur-[120px] rounded-full" />
+
+          <div className="relative z-10 max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-500 text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] mb-8 border border-amber-500/20">
+                Exclusive Opportunity
+              </span>
+              <h2 className="text-4xl md:text-8xl font-bold text-white mb-8 font-serif leading-[1.1]">
+                Secure Your <span className="text-amber-500 italic">Prestige Address</span>
+              </h2>
+              <p className="text-gray-400 text-base md:text-2xl mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                Join an elite community of businesses at Kisumu's premier commercial landmark. Limited high-visibility units now available for lease.
+              </p>
+
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <Link
+                  to="/contact"
+                  className="group relative inline-flex items-center justify-center bg-amber-500 text-slate-900 px-12 py-5 rounded-[2rem] font-bold text-base md:text-lg shadow-[0_20px_40px_-10px_rgba(245,158,11,0.3)] hover:bg-amber-400 transition-all overflow-hidden"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Start Your Application <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </Link>
+                <Link
+                  to="/gallery"
+                  className="inline-flex items-center justify-center text-white px-12 py-5 rounded-[2rem] font-bold text-base md:text-lg border border-white/10 backdrop-blur-md hover:bg-white/5 transition-all"
+                >
+                  View Gallery
+                </Link>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Homepage Contact Preview */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="max-w-3xl mx-auto px-4 text-center">
-          <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-xs">Direct Support</span>
-          <h2 className="text-2xl md:text-4xl font-bold font-serif text-slate-900 mt-4">Speak with Our Management Team</h2>
-          <p className="text-gray-500 mt-6 text-sm md:text-lg">
-            Our leasing office is ready to guide you through our available units and provide customized quotes based on your requirements.
-          </p>
-          <div className="grid md:grid-cols-2 gap-6 mt-12">
-            <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="flex flex-col items-center p-8 rounded-3xl bg-slate-50 border border-gray-100 hover:border-amber-500/30 transition-all group">
-              <div className="bg-amber-100 p-4 rounded-2xl text-amber-600 mb-4 group-hover:scale-110 transition-transform">
-                <Phone size={24} />
+      {/* Direct support - Refined Professional Style */}
+      <section className="py-20 md:py-32 bg-white relative">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-xs">Leasing & Support</span>
+                <h2 className="text-3xl md:text-5xl font-bold font-serif text-slate-900 leading-tight">
+                  Our Management Team <br />
+                  <span className="text-gray-400">is Here to Assist</span>
+                </h2>
+                <p className="text-gray-500 text-sm md:text-lg leading-relaxed max-w-lg">
+                  Whether you're inquiring about specific unit dimensions or want to arrange a walk-through, our dedicated property managers provide professional guidance for every step of your leasing journey.
+                </p>
               </div>
-              <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Call Us</span>
-              <span className="text-slate-900 font-bold text-lg md:text-xl mt-1">{CONTACT_INFO.phone}</span>
-            </a>
-            <a href={`mailto:${CONTACT_INFO.email}`} className="flex flex-col items-center p-8 rounded-3xl bg-slate-50 border border-gray-100 hover:border-amber-500/30 transition-all group">
-              <div className="bg-amber-100 p-4 rounded-2xl text-amber-600 mb-4 group-hover:scale-110 transition-transform">
-                <Mail size={24} />
+
+              <div className="flex items-center gap-6 p-6 rounded-[2rem] bg-slate-50 border border-slate-100 max-w-md">
+                <div className="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 shadow-inner">
+                  <CheckCircle2 size={32} />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900">Guided Site Visits</h4>
+                  <p className="text-xs text-gray-400">Available Monday — Saturday by appointment</p>
+                </div>
               </div>
-              <span className="text-gray-400 text-[10px] uppercase tracking-widest font-bold">Email Us</span>
-              <span className="text-slate-900 font-bold text-lg md:text-xl mt-1 break-all">{CONTACT_INFO.email}</span>
-            </a>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              <motion.a
+                href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`}
+                whileHover={{ y: -5 }}
+                className="flex flex-col p-10 rounded-[2.5rem] bg-white border border-gray-100 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] hover:border-amber-500/20 transition-all group"
+              >
+                <div className="bg-slate-900 w-14 h-14 rounded-2xl flex items-center justify-center text-amber-500 mb-8 group-hover:scale-110 transition-transform shadow-lg shadow-slate-900/10">
+                  <Phone size={24} />
+                </div>
+                <div className="mt-auto">
+                  <span className="text-gray-400 text-[10px] uppercase tracking-[0.2em] font-bold block mb-2">Direct Inquiry</span>
+                  <span className="text-slate-900 font-bold text-lg md:text-xl font-serif">{CONTACT_INFO.phone}</span>
+                </div>
+              </motion.a>
+
+              <motion.a
+                href={`mailto:${CONTACT_INFO.email}`}
+                whileHover={{ y: -5 }}
+                className="flex flex-col p-10 rounded-[2.5rem] bg-slate-900 border border-slate-800 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] transition-all group"
+              >
+                <div className="bg-amber-500 w-14 h-14 rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform">
+                  <Mail size={24} />
+                </div>
+                <div className="mt-auto">
+                  <span className="text-gray-500 text-[10px] uppercase tracking-[0.2em] font-bold block mb-2">Electronic Mail</span>
+                  <span className="text-white font-bold text-lg md:text-xl font-serif break-all opacity-90 group-hover:opacity-100 transition-opacity">{CONTACT_INFO.email}</span>
+                </div>
+              </motion.a>
+            </div>
           </div>
         </div>
       </section>
