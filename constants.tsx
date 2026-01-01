@@ -1,13 +1,13 @@
 
 import React from 'react';
-import { 
-  ShieldCheck, 
-  Wifi, 
-  Zap, 
-  Droplets, 
-  Car, 
-  Building2, 
-  Briefcase, 
+import {
+  ShieldCheck,
+  Wifi,
+  Zap,
+  Droplets,
+  Car,
+  Building2,
+  Briefcase,
   Store,
   FlameKindling,
   Home,
@@ -19,10 +19,10 @@ import {
 import { NavItem, Amenity, Space } from './types';
 
 export const COLORS = {
-  primary: '#F59E0B', 
-  secondary: '#FDFCF0', 
-  text: '#1F2937', 
-  accent: '#0F172A', 
+  primary: '#F59E0B',
+  secondary: '#FDFCF0',
+  text: '#1F2937',
+  accent: '#0F172A',
 };
 
 export const NAV_ITEMS: NavItem[] = [
@@ -80,7 +80,7 @@ export const SPACES: Space[] = [
     size: 'High Visibility Units',
     priceRange: 'Strategic Frontage',
     features: ['Clinics & Salons', 'Fashion & Beauty', 'Electronics', 'Walk-in traffic'],
-    image: '/images/exterior_overview.jpg',
+    image: '/images/exterior.jpg',
     status: 'Limited'
   },
   {
@@ -90,16 +90,56 @@ export const SPACES: Space[] = [
     size: 'Professional Layouts',
     priceRange: 'Competitive Rates',
     features: ['NGOs & Institutions', 'Law & IT Firms', 'Consultancies', 'Well-lit rooms'],
-    image: '/images/interior1.jpg',
+    image: '/images/interior3.jpg',
     status: 'Available'
   }
 ];
 
 export const GALLERY_VIDEOS = [
-  { id: 'v1', src: '/images/video-1.mp4', title: 'Exterior Tour', category: 'Virtual Tour' },
-  { id: 'v2', src: '/images/video-2.mp4', title: 'Office Walkthrough', category: 'Interior' },
-  { id: 'v3', src: '/images/video-3.mp4', title: 'Business Hub Lifestyle', category: 'Community' },
-  { id: 'v4', src: '/images/video-interior-tour.mp4', title: 'Interior Floor Showcase', category: 'Interior' },
+  { id: 'v1', src: '/Videos/overview.mp4', title: 'Property Overview', category: 'Virtual Tour' },
+  { id: 'v2', src: '/Videos/interior_short.mp4', title: 'Interior Highlights', category: 'Interior' },
+  { id: 'v3', src: '/Videos/vid.mp4', title: 'Business Hub Lifestyle', category: 'Community' },
+  { id: 'v4', src: '/Videos/interior.mp4', title: 'Interior Tour', category: 'Interior' },
+  { id: 'v5', src: '/Videos/video2.mp4', title: 'Feature Walkthrough', category: 'Features' },
+];
+
+export const GALLERY_IMAGES = [
+  // Exterior
+  { id: 'i1', src: '/images/hero.jpg', title: 'Main Entry', category: 'Exterior' },
+  { id: 'i2', src: '/images/exterior.jpg', title: 'Building Front', category: 'Exterior' },
+  { id: 'i3', src: '/images/exterior_overview.jpg', title: 'Full Exterior View', category: 'Exterior' },
+  { id: 'i4', src: '/images/exterior1.jpg', title: 'Facade Detail', category: 'Exterior' },
+  { id: 'i5', src: '/images/exterior2.jpg', title: 'Side View', category: 'Exterior' },
+  { id: 'i6', src: '/images/exterior3.jpg', title: 'Street View', category: 'Exterior' },
+  { id: 'i7', src: '/images/exterior4.jpg', title: 'Building Angle', category: 'Exterior' },
+  { id: 'i8', src: '/images/exterior5.jpg', title: 'Exterior Perspective', category: 'Exterior' },
+
+  // Compound
+  { id: 'c1', src: '/images/compound.jpg', title: 'Main Compound', category: 'Compound' },
+  { id: 'c2', src: '/images/compound1.jpg', title: 'Parking Area', category: 'Compound' },
+  { id: 'c3', src: '/images/compound2.jpg', title: 'Driveway', category: 'Compound' },
+
+  // Interior
+  { id: 'in1', src: '/images/interior.jpg', title: 'Lobby Area', category: 'Interior' },
+  { id: 'in2', src: '/images/interior1.jpg', title: 'Office Space', category: 'Interior' },
+  { id: 'in3', src: '/images/interior2.jpg', title: 'Meeting Room', category: 'Interior' },
+  { id: 'in4', src: '/images/interior3.jpg', title: 'Executive Suite', category: 'Interior' },
+  { id: 'in5', src: '/images/interior4.jpg', title: 'Work Area', category: 'Interior' },
+  { id: 'in6', src: '/images/interior5.jpg', title: 'Lounge', category: 'Interior' },
+  { id: 'in7', src: '/images/corridor.jpg', title: 'Main Corridor', category: 'Interior' },
+  { id: 'in8', src: '/images/corridor1.jpg', title: 'Hallway', category: 'Interior' },
+  { id: 'in9', src: '/images/staircase.jpg', title: 'Main Staircase', category: 'Interior' },
+  { id: 'in10', src: '/images/staircase1.jpg', title: 'Stairwell', category: 'Interior' },
+  { id: 'in11', src: '/images/staircase2.jpg', title: 'Upper Floor Access', category: 'Interior' },
+
+  // Facilities
+  { id: 'f1', src: '/images/generator.jpg', title: 'Backup Generator', category: 'Facilities' },
+  { id: 'f2', src: '/images/backup_generator.jpg', title: 'Power Backup Unit', category: 'Facilities' },
+  { id: 'f3', src: '/images/power_control_interior.jpg', title: 'Control Room', category: 'Facilities' },
+  { id: 'f4', src: '/images/power_control_interior1.jpg', title: 'Power Systems', category: 'Facilities' },
+  { id: 'f5', src: '/images/fire_extinguishers.jpg', title: 'Fire Safety', category: 'Facilities' },
+  { id: 'f6', src: '/images/sinks.jpg', title: 'Washroom Facilities', category: 'Facilities' },
+  { id: 'f7', src: '/images/sinks1.jpg', title: 'Modern Amenities', category: 'Facilities' },
 ];
 
 export const CONTACT_INFO = {
