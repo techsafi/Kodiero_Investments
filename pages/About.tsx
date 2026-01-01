@@ -1,7 +1,22 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Eye, CheckCircle, TrendingUp, MapPin, Building2, ShieldCheck, Zap, Users, Award, LucideIcon } from 'lucide-react';
+import { 
+  Target, 
+  Eye, 
+  CheckCircle, 
+  TrendingUp, 
+  MapPin, 
+  Building2, 
+  ShieldCheck, 
+  Zap, 
+  Users, 
+  Award, 
+  LucideIcon,
+  FlameKindling,
+  LineChart,
+  Gem
+} from 'lucide-react';
 import SectionDivider from '../components/SectionDivider';
 
 interface AdvantageItem {
@@ -11,18 +26,18 @@ interface AdvantageItem {
 }
 
 const About: React.FC = () => {
-  const kondeleAdvantages: AdvantageItem[] = [
-    { icon: MapPin, title: "Transport Hub", desc: "Major connection point linking Kibos Road to key city routes." },
-    { icon: TrendingUp, title: "Economic Activity", desc: "Vibrant day-and-night economy with high customer traffic." },
-    { icon: Building2, title: "Growth Hub", desc: "Surrounded by expanding residential and institutional areas." },
-    { icon: ShieldCheck, title: "Future Proof", desc: "Strategic positioning ensures strong long-term growth prospects." }
+  const companyPillars = [
+    { title: "Strategic Property Selections", desc: "Identifying high-potential locations for long-term growth." },
+    { title: "Modern Construction Standards", desc: "Durable, professional, and future-ready buildings." },
+    { title: "Reliable Facility Management", desc: "Ensuring uninterrupted business operations." },
+    { title: "Tenant-First Communication", desc: "Prompt support and responsive management." }
   ];
 
-  const coreFacilities: AdvantageItem[] = [
-    { icon: Zap, title: "Full Backup", desc: "Automatic generator standby." },
-    { icon: ShieldCheck, title: "24/7 Safety", desc: "CCTV and security personnel." },
-    { icon: Users, title: "Management", desc: "On-site tenant support." },
-    { icon: Building2, title: "Maintenance", desc: "Regular facility care." }
+  const propertyHighlights = [
+    { title: "High Visibility", desc: "Frontage and signage placement maximize customer reach." },
+    { title: "Modern Build", desc: "Durable construction, professional layouts, and contemporary design." },
+    { title: "Reliable Utilities", desc: "Water, electricity, and backup power systems in place." },
+    { title: "Strategic Context", desc: "Located at the heart of Kondele’s commercial growth corridor." }
   ];
 
   return (
@@ -34,63 +49,42 @@ const About: React.FC = () => {
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl mx-auto"
+            className="max-w-4xl mx-auto"
           >
             <span className="inline-block px-3 py-1 rounded-full bg-amber-500/20 text-amber-500 text-[9px] md:text-xs font-bold uppercase tracking-widest mb-4 border border-amber-500/30">
               PROPERTY MANAGEMENT LEADER
             </span>
             <h1 className="text-3xl md:text-7xl font-bold mb-4 font-serif leading-tight">
-              Crafting Foundations for <span className="text-amber-500 italic">Success</span>
+              Crafting Foundations for <span className="text-amber-500 italic">Business Success</span>
             </h1>
-            <p className="text-gray-400 text-xs md:text-xl leading-relaxed max-w-xl mx-auto font-light">
-              Kodiero Investments is a property development leader committed to providing high-quality, sustainable commercial spaces in Kisumu City.
+            <p className="text-gray-400 text-xs md:text-xl leading-relaxed max-w-2xl mx-auto font-light">
+              Kodiero Investments is a trusted property development leader in Kisumu City, committed to creating high-quality, sustainable commercial spaces.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Two Narratives - Company & Property */}
+      {/* The Company Section */}
       <section className="py-12 md:py-24">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-10 lg:gap-20">
-            {/* The Company */}
-            <div className="space-y-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+            <div className="space-y-6">
               <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[8px] md:text-xs">The Company</span>
-              <h2 className="text-xl md:text-4xl font-bold text-slate-900 font-serif">Kodiero Investments</h2>
-              <p className="text-gray-600 text-xs md:text-lg leading-relaxed">
-                We represent a vision of creating spaces where businesses can operate efficiently, attract customers easily, and grow sustainably. Our focus is on modern construction standards and long-term value for every tenant who joins our ecosystem.
+              <h2 className="text-2xl md:text-4xl font-bold text-slate-900 font-serif">Kodiero Investments</h2>
+              <p className="text-gray-600 text-sm md:text-lg leading-relaxed">
+                We represent a vision of creating spaces where businesses operate efficiently, attract customers, and grow sustainably. Our approach is tenant-first, emphasizing reliability, transparency, and proactive management. Kodiero Investments is more than a landlord — we are a partner in business success.
               </p>
-              <div className="grid grid-cols-1 gap-y-2 pt-2">
-                {[
-                  'Strategic Property Selections',
-                  'Modern Construction Standards',
-                  'Reliable Facility Management',
-                  'Tenant-First Communication'
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 text-[10px] md:text-sm font-semibold text-slate-700">
-                    <CheckCircle className="text-amber-500 shrink-0" size={16} /> {item}
+              <div className="grid sm:grid-cols-2 gap-4 pt-4">
+                {companyPillars.map((pillar, i) => (
+                  <div key={i} className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
+                    <h4 className="font-bold text-slate-900 text-sm mb-1">{pillar.title}</h4>
+                    <p className="text-xs text-gray-400">{pillar.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
-
-            {/* The Property */}
-            <div className="space-y-4">
-              <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[8px] md:text-xs">The Property</span>
-              <h2 className="text-xl md:text-4xl font-bold text-slate-900 font-serif">Kodiero Business Center</h2>
-              <p className="text-gray-600 text-xs md:text-lg leading-relaxed">
-                Kodiero Business Center is a purpose-built commercial building designed to serve a wide range of enterprises—from retail shops to corporate consultancies. Located in the heart of Kondele, the building is the nexus of Kisumu's northern commercial growth.
-              </p>
-              <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
-                  <div className="font-bold text-amber-600 text-sm md:text-lg">High Visibility</div>
-                  <p className="text-[8px] md:text-[10px] text-gray-400 mt-1 uppercase tracking-wider font-bold">Signage & Branding</p>
-                </div>
-                <div className="bg-white p-4 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-center">
-                  <div className="font-bold text-amber-600 text-sm md:text-lg">Modern Build</div>
-                  <p className="text-[8px] md:text-[10px] text-gray-400 mt-1 uppercase tracking-wider font-bold">Reliable Utilities</p>
-                </div>
-              </div>
+            <div className="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white">
+              <img src="/images/exterior_overview.jpg" alt="Kodiero Overview" className="w-full object-cover aspect-[4/3]" />
             </div>
           </div>
         </div>
@@ -98,110 +92,164 @@ const About: React.FC = () => {
 
       <SectionDivider />
 
-      {/* Location Advantage */}
-      <section className="py-12 md:py-24 bg-slate-50 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-10 md:mb-20">
-            <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[8px] md:text-xs">Strategic Context</span>
-            <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif mt-2">Location Advantage: <span className="text-amber-600">Kondele</span></h2>
-            <p className="text-xs md:text-lg text-gray-500 max-w-2xl mx-auto mt-4">Kondele is Kisumu’s fastest-growing commercial hub, experiencing rapid transformation driven by improved infrastructure and expanding population.</p>
-          </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
-            {kondeleAdvantages.map((adv, i) => (
-              <div key={i} className="bg-white p-5 md:p-10 rounded-[1.5rem] md:rounded-[2.5rem] border border-gray-100 text-center flex flex-col items-center shadow-sm">
-                <div className="text-amber-500 mb-3 md:mb-6">
-                  <adv.icon size={24} />
-                </div>
-                <h4 className="font-bold text-[10px] md:text-lg mb-1 md:mb-3 text-slate-800 leading-tight">{adv.title}</h4>
-                <p className="text-[8px] md:text-sm text-gray-400 leading-tight md:leading-relaxed">{adv.desc}</p>
+      {/* The Property Section */}
+      <section className="py-12 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 text-center mb-16">
+          <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[8px] md:text-xs">The Property</span>
+          <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif mt-2">Kodiero Business Center</h2>
+          <p className="text-gray-500 text-sm md:text-lg max-w-2xl mx-auto mt-4">Purpose-built commercial excellence in Kondele, designed to accommodate a wide range of enterprises from corporate offices to retail shops.</p>
+        </div>
+        
+        <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {propertyHighlights.map((highlight, i) => (
+            <div key={i} className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100 flex flex-col items-center text-center">
+              <div className="bg-white p-4 rounded-2xl shadow-sm text-amber-500 mb-6">
+                {i === 0 && <TrendingUp size={24} />}
+                {i === 1 && <Building2 size={24} />}
+                {i === 2 && <Zap size={24} />}
+                {i === 3 && <MapPin size={24} />}
               </div>
-            ))}
-          </div>
+              <h4 className="font-bold text-slate-800 mb-2">{highlight.title}</h4>
+              <p className="text-xs text-gray-500 leading-relaxed">{highlight.desc}</p>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Mission & Vision */}
       <section className="py-12 md:py-24 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4">
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-slate-900 p-8 md:p-12 rounded-[2.5rem] text-white flex flex-col"
-          >
-            <div className="bg-amber-500/20 w-12 h-12 rounded-2xl flex items-center justify-center text-amber-500 mb-6">
-              <Target size={24} />
-            </div>
-            <h3 className="text-xl md:text-3xl font-bold mb-4 font-serif">Our Mission</h3>
-            <p className="text-gray-400 text-xs md:text-lg leading-relaxed">
-              To provide high-quality managed spaces that foster entrepreneurship in Kisumu. We aim to be the foundation upon which your business builds its future.
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-slate-900 p-8 md:p-16 rounded-[3rem] text-white">
+            <Target className="text-amber-500 mb-6" size={40} />
+            <h3 className="text-2xl md:text-4xl font-bold mb-6 font-serif">Our Mission</h3>
+            <p className="text-gray-400 text-sm md:text-xl leading-relaxed">
+              To provide high-quality, managed spaces that foster entrepreneurship in Kisumu City. We aim to offer an environment where businesses can focus on growth while we handle the infrastructure, utilities, and security.
             </p>
-          </motion.div>
-
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-amber-500 p-8 md:p-12 rounded-[2.5rem] text-white flex flex-col shadow-xl shadow-amber-500/20"
-          >
-            <div className="bg-white/20 w-12 h-12 rounded-2xl flex items-center justify-center text-white mb-6">
-              <Eye size={24} />
-            </div>
-            <h3 className="text-xl md:text-3xl font-bold mb-4 font-serif">Our Vision</h3>
-            <p className="text-amber-50 text-xs md:text-lg leading-relaxed">
-              To be the leading commercial real estate partner in Western Kenya, recognized for modern infrastructure, transparency, and tenant growth.
+          </div>
+          <div className="bg-amber-500 p-8 md:p-16 rounded-[3rem] text-white shadow-2xl shadow-amber-500/20">
+            <Eye className="text-white mb-6" size={40} />
+            <h3 className="text-2xl md:text-4xl font-bold mb-6 font-serif">Our Vision</h3>
+            <p className="text-amber-50 text-sm md:text-xl leading-relaxed">
+              To be the leading commercial real estate partner in Western Kenya, recognized for modern, professional infrastructure, transparency and trust in management, and supporting tenant growth and operational success.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Core Facilities */}
+      {/* Why Partner With Us - Core Facilities */}
       <section className="py-12 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-10 md:mb-20">
-            <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[8px] md:text-xs">Why Partner With Us</span>
-            <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif mt-2">Core Facilities</h2>
+          <div className="text-center mb-16">
+            <span className="text-amber-600 font-bold uppercase tracking-[0.3em] text-[8px] md:text-xs">Reliability First</span>
+            <h2 className="text-2xl md:text-5xl font-bold text-slate-900 font-serif mt-2">Why Partner With Us</h2>
           </div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8">
-            {coreFacilities.map((adv, i) => (
-              <div key={i} className="bg-slate-50 p-5 md:p-10 rounded-[1.5rem] border border-gray-100 flex flex-col items-center text-center">
-                <div className="text-amber-500 mb-3">
-                  <adv.icon size={24} />
-                </div>
-                <h4 className="font-bold text-[10px] md:text-lg mb-1 text-slate-800">{adv.title}</h4>
-                <p className="text-[8px] md:text-sm text-gray-400 leading-tight">{adv.desc}</p>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Core Facilities */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-amber-500 p-2 rounded-lg text-white"><Zap size={18} /></div>
+                <h3 className="text-xl font-bold font-serif text-slate-900">Core Facilities</h3>
               </div>
-            ))}
+              <ul className="space-y-4">
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> Reliable power backup with automatic generator standby.</li>
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> Continuous water supply through underground and overhead storage.</li>
+              </ul>
+            </div>
+
+            {/* Safety & Security */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-amber-500 p-2 rounded-lg text-white"><ShieldCheck size={18} /></div>
+                <h3 className="text-xl font-bold font-serif text-slate-900">Safety & Security</h3>
+              </div>
+              <ul className="space-y-4">
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> CCTV surveillance across the building.</li>
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> 24/7 on-site security personnel.</li>
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> Fire alarm systems installed and monitored.</li>
+              </ul>
+            </div>
+
+            {/* Management & Support */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <div className="bg-amber-500 p-2 rounded-lg text-white"><Users size={18} /></div>
+                <h3 className="text-xl font-bold font-serif text-slate-900">Management & Support</h3>
+              </div>
+              <ul className="space-y-4">
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> On-site tenant support for all facility needs.</li>
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> Regular maintenance and upkeep of common areas.</li>
+                <li className="text-sm text-gray-500 flex gap-3"><CheckCircle size={16} className="text-amber-500 shrink-0 mt-1" /> Quick response to tenant inquiries.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Map Spotlight */}
+      {/* Tenant Experience & Market Insights */}
+      <section className="py-12 md:py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-sm">
+              <h3 className="text-2xl font-bold font-serif text-slate-900 mb-6 flex items-center gap-3">
+                <Award className="text-amber-500" /> Tenant Experience
+              </h3>
+              <p className="text-gray-600 text-sm md:text-lg leading-relaxed mb-6">
+                Kodiero Business Center is designed to create a productive, professional, and client-friendly environment. Businesses can operate confidently, knowing the infrastructure and support systems are in place.
+              </p>
+              <div className="space-y-4">
+                {['Clean, organized common areas', 'Well-lit and ventilated spaces', 'Smooth traffic flow for tenants and visitors', 'A professional atmosphere that reflects positively on tenant brands'].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 text-sm text-slate-700 font-medium">
+                    <CheckCircle size={14} className="text-emerald-500" /> {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-slate-900 p-8 md:p-12 rounded-[3rem] text-white">
+              <h3 className="text-2xl font-bold font-serif mb-6 flex items-center gap-3 text-amber-500">
+                <LineChart /> Local Market Insights
+              </h3>
+              <p className="text-gray-400 text-sm md:text-lg leading-relaxed mb-8">
+                Kondele is transforming into a commercial epicenter in Kisumu. Operating in Kodiero Business Center enables tenants to ride the wave of growth while securing their brand presence.
+              </p>
+              <div className="grid gap-4">
+                {[
+                  { label: "High Demand", text: "Increasing foot traffic for retail and office spaces." },
+                  { label: "New Presence", text: "Banks, clinics, and service providers establishing a presence." },
+                  { label: "Visibility", text: "Strategic location along Kibos Road ensures accessibility." },
+                  { label: "Value", text: "Strong potential for long-term property value appreciation." }
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="font-bold text-amber-500 text-xs uppercase tracking-widest shrink-0 mt-1">{item.label}</div>
+                    <p className="text-xs text-gray-400">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Strategic Location - Final Summary */}
       <section className="py-12 md:py-32 bg-slate-900 text-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="flex-1 space-y-4 md:space-y-6">
-              <h2 className="text-2xl md:text-5xl font-bold font-serif leading-tight">
-                Nexus of Kisumu's <br/>
-                <span className="text-amber-500">Northern Growth</span>
+            <div className="flex-1 space-y-6">
+              <span className="text-amber-500 font-bold uppercase tracking-[0.3em] text-xs">Kondele Advantage</span>
+              <h2 className="text-3xl md:text-5xl font-bold font-serif leading-tight">
+                Strategically Positioned <br/>
+                <span className="text-amber-500">for Modern Growth</span>
               </h2>
               <p className="text-gray-400 text-xs md:text-lg leading-relaxed">
-                Positioned strategically along Kibos Road, Kodiero Business Center captures both morning and evening transit traffic. It serves as an ideal anchor for retail banks, clinics, and professional consultancies that require easy client access and maximum brand visibility.
+                Positioned at the nexus of Kisumu's northern growth corridor, our location links Kibos Road to major city routes. It captures the vibrant day-and-night economy of Kondele, surrounded by expanding residential, institutional, and commercial areas. Future-proof your business by establishing it in Kisumu's most dynamic marketplace.
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-2xl">
-                  <div className="text-amber-500 font-bold text-lg md:text-2xl">High</div>
-                  <div className="text-[8px] uppercase tracking-widest text-gray-500">Visibility Frontage</div>
-                </div>
-                <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-2xl">
-                  <div className="text-amber-500 font-bold text-lg md:text-2xl">Vibrant</div>
-                  <div className="text-[8px] uppercase tracking-widest text-gray-500">Economy Center</div>
-                </div>
-              </div>
             </div>
             <div className="flex-1 w-full aspect-video rounded-3xl overflow-hidden border border-white/10 grayscale opacity-70">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15959.088151213093!2d34.7709337!3d-0.0886475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182aa48d3c010d49%3A0x6a10067b8a74e2d3!2sKondele%2C%20Kisumu!5e0!3m2!1sen!2ske!4v1715000000000!5m2!1sen!2ske" 
                 width="100%" height="100%" style={{ border: 0 }} allowFullScreen={true} loading="lazy" 
-                title="Kodiero Business Center Location"
+                title="Strategic Kondele Map"
               ></iframe>
             </div>
           </div>
@@ -210,17 +258,28 @@ const About: React.FC = () => {
 
       {/* Call to Action */}
       <section className="py-12 md:py-24 bg-[#FDFCF0] text-center px-4">
-        <div className="max-w-2xl mx-auto space-y-6">
-          <h2 className="text-2xl md:text-4xl font-bold font-serif text-slate-900">Experience the Center Firsthand</h2>
-          <p className="text-xs md:text-lg text-gray-600">We invite you to schedule a private tour of our facilities and find the perfect unit for your business goals.</p>
-          <div className="pt-4">
+        <div className="max-w-3xl mx-auto space-y-6">
+          <div className="inline-block bg-amber-100 p-4 rounded-3xl text-amber-600 mb-4">
+            <Gem size={32} />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold font-serif text-slate-900">Experience the Center Firsthand</h2>
+          <p className="text-xs md:text-xl text-gray-600">We invite prospective tenants to schedule a private tour and explore available spaces. Your business deserves a space built for growth.</p>
+          <div className="pt-8 flex flex-col sm:flex-row justify-center gap-4">
             <motion.a 
               href="/#/contact"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-block bg-amber-500 text-white px-10 py-4 rounded-2xl font-bold text-sm md:text-lg shadow-xl"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block bg-slate-900 text-white px-10 py-5 rounded-2xl font-bold text-sm md:text-lg shadow-xl"
             >
-              Book Site Visit
+              Book Site Visit Today
+            </motion.a>
+            <motion.a 
+              href="/#/spaces"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-block bg-white text-slate-900 border border-slate-200 px-10 py-5 rounded-2xl font-bold text-sm md:text-lg shadow-sm"
+            >
+              Explore Spaces
             </motion.a>
           </div>
         </div>

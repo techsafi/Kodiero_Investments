@@ -94,6 +94,7 @@ export const GALLERY_VIDEOS = [
   { id: 'v1', src: '/images/video-1.mp4', title: 'Exterior Tour', category: 'Virtual Tour' },
   { id: 'v2', src: '/images/video-2.mp4', title: 'Office Walkthrough', category: 'Interior' },
   { id: 'v3', src: '/images/video-3.mp4', title: 'Business Hub Lifestyle', category: 'Community' },
+  { id: 'v4', src: '/images/video-interior-tour.mp4', title: 'Interior Floor Showcase', category: 'Interior' },
 ];
 
 export const CONTACT_INFO = {
